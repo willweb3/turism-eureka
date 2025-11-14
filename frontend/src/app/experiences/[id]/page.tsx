@@ -22,7 +22,7 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const listing = mockListingDetail;
+  const listing = mockListingDetail as any;
 
   return {
     title: `${listing.title} | AZOREON`,
