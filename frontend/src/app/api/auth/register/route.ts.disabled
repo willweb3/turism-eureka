@@ -1,0 +1,100 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { registerSchema } from '@/lib/validations/auth.validation';
+import { SharetribeUserService } from '@/lib/sharetribe/services/user.service';
+import type { RegisterFormData } from '@/types/user.types';
+
+/**
+ * POST /api/auth/register
+ *
+ * Fluxo de cadastro simplificado (apenas Sharetribe):
+ * 1. Validar dados de entrada
+ * 2. Verificar se email já existe no Sharetribe
+ * 3. Criar user no Sharetribe
+ * 4. Retornar sucesso
+ *
+ * TODO: Integrar Supabase Auth depois
+ */
+export async function POST(request: NextRequest) {
+  let sharetribeUserId: string | null = null;
+
+  try {
+    // 1. Parse e validar body
+    const body = await request.json();
+    const validatedData = registerSchema.parse(body) as RegisterFormData;
+
+    // 2. Gerar referral code se for host
+    const referralCode = validatedData.userType === 'host'
+      ? SharetribeUserService.generateReferralCode(validatedData.firstName, validatedData.lastName)
+      : undefined;
+
+    // 3. Criar user no Sharetribe (a API retorna erro 409 se email já existir)
+    const sharetribeResult = await SharetribeUserService.createUser({
+      email: validatedData.email,
+      firstName: validatedData.firstName,
+      lastName: validatedData.lastName,
+      publicData: {
+        userType: validatedData.userType,
+        phoneNumber: validatedData.phoneNumber || null,
+        referralCode: referralCode || null,
+      },
+      privateData: {
+        password: validatedData.password, // Armazenar temporariamente até integrar Supabase
+      },
+      protectedData: {},
+    });
+
+    if (!sharetribeResult.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: sharetribeResult.error || 'Erro ao criar usuário',
+          code: sharetribeResult.code || 'SHARETRIBE_ERROR'
+        },
+        { status: 500 }
+      );
+    }
+
+    sharetribeUserId = sharetribeResult.userId || null;
+
+    // 5. Retornar sucesso
+    return NextResponse.json(
+      {
+        success: true,
+        message: 'Conta criada com sucesso! Você já pode fazer login.',
+        data: {
+          sharetribeUserId: sharetribeUserId,
+          email: validatedData.email,
+          firstName: validatedData.firstName,
+          lastName: validatedData.lastName,
+          userType: validatedData.userType,
+        },
+      },
+      { status: 201 }
+    );
+
+  } catch (error: any) {
+    console.error('Registration error:', error);
+
+    // Tratar erro de validação Zod
+    if (error.name === 'ZodError') {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Dados inválidos',
+          code: 'VALIDATION_ERROR',
+          details: error.errors
+        },
+        { status: 400 }
+      );
+    }
+
+    return NextResponse.json(
+      {
+        success: false,
+        error: error.message || 'Erro interno no servidor',
+        code: 'INTERNAL_ERROR'
+      },
+      { status: 500 }
+    );
+  }
+}

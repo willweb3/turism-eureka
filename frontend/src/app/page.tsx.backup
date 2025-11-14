@@ -1,0 +1,107 @@
+import Footer from '@/components/layout/Footer'
+import SearchBar from '@/components/marketplace/SearchBar'
+import FeaturedListings from '@/components/marketplace/FeaturedListings'
+
+export default function HomePage() {
+  return (
+    <>
+      <main>
+        {/* Hero Section */}
+        <section className="relative bg-gradient-to-br from-primary-600 to-primary-800 text-white py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-5xl md:text-6xl font-bold mb-10">
+                Descubra a Ilha do Pico
+              </h1>
+
+              {/* Search Bar */}
+              <SearchBar />
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Services */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-12">
+              Serviços em Destaque
+            </h2>
+            <FeaturedListings type="service" />
+          </div>
+        </section>
+
+        {/* Featured Products */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-12">
+              Produtos Regionais
+            </h2>
+            <FeaturedListings type="product" />
+          </div>
+        </section>
+
+        {/* Featured Events */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-12">
+              Eventos Culturais
+            </h2>
+            <FeaturedListings type="event" />
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <section className="py-16 bg-primary-600 text-white">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <div>
+                <div className="text-4xl font-bold mb-2">500+</div>
+                <div className="text-primary-100">Experiências</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold mb-2">200+</div>
+                <div className="text-primary-100">Prestadores</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold mb-2">50+</div>
+                <div className="text-primary-100">Anfitriões</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold mb-2">10k+</div>
+                <div className="text-primary-100">Reservas</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-4xl font-bold mb-6">
+              Pronto para explorar o Pico?
+            </h2>
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              Junte-se a milhares de turistas que já descobriram as maravilhas da ilha
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/search"
+                className="px-8 py-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition text-lg font-semibold"
+              >
+                Explorar Agora
+              </a>
+              <a
+                href="/auth/signup?type=provider"
+                className="px-8 py-4 border-2 border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 transition text-lg font-semibold"
+              >
+                Tornar-me Prestador
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </>
+  )
+}
