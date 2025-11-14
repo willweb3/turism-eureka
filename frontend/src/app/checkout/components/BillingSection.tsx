@@ -18,7 +18,7 @@ export default function BillingSection() {
 
   const handleChange = (field: string, value: string) => {
     updateFormData({
-      billing: { ...formData.billing, [field]: value }
+      billing: { ...formData.billing, [field]: value } as any
     });
   };
 
