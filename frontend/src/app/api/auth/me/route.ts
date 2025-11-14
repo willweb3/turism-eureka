@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
       .from('profiles')
       .select('*')
       .eq('user_id', authUser.id)
-      .single();
+      .single() as { data: any; error: any };
 
     if (profileError) {
       console.error('Profile fetch error:', profileError);
