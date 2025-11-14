@@ -64,7 +64,12 @@ export async function GET(request: NextRequest) {
       id: authUser.id,
       email: authUser.email!,
       emailConfirmed: !!authUser.email_confirmed_at,
+      createdAt: authUser.created_at || profile.created_at,
+      lastSignInAt: authUser.last_sign_in_at || profile.last_login_at || new Date().toISOString(),
       profile: {
+        id: profile.id,
+        userId: profile.user_id,
+        sharetribeUserId: profile.sharetribe_user_id,
         firstName: profile.first_name,
         lastName: profile.last_name,
         phoneNumber: profile.phone_number,
@@ -73,41 +78,30 @@ export async function GET(request: NextRequest) {
         userType: profile.user_type,
         isVerified: profile.is_verified,
         verificationDate: profile.verification_date,
-        location: {
-          country: profile.country,
-          city: profile.city,
-          postalCode: profile.postal_code,
+        country: profile.country,
+        city: profile.city,
+        postalCode: profile.postal_code,
+        preferredLanguage: profile.preferred_language || 'pt',
+        notificationPreferences: profile.notification_preferences || {
+          email: true,
+          sms: false
         },
-        settings: {
-          preferredLanguage: profile.preferred_language || 'pt',
-          notificationPreferences: profile.notification_preferences || {
-            email: true,
-            sms: false
-          },
-        },
-        metadata: {
-          createdAt: profile.created_at,
-          updatedAt: profile.updated_at,
-          lastLoginAt: profile.last_login_at,
-        },
+        createdAt: profile.created_at,
+        updatedAt: profile.updated_at,
+        lastLoginAt: profile.last_login_at,
       },
-      sharetribeUserId: profile.sharetribe_user_id,
     };
 
     // Adicionar campos específicos baseado no tipo de user
     if (profile.user_type === 'host') {
-      user.profile.host = {
-        referralCode: profile.referral_code,
-        companyName: profile.company_name,
-        taxId: profile.tax_id,
-      };
+      user.profile.referralCode = profile.referral_code;
+      user.profile.companyName = profile.company_name;
+      user.profile.taxId = profile.tax_id;
     }
 
     if (profile.user_type === 'provider') {
-      user.profile.provider = {
-        businessLicense: profile.business_license,
-        insurancePolicy: profile.insurance_policy,
-      };
+      user.profile.businessLicense = profile.business_license;
+      user.profile.insurancePolicy = profile.insurance_policy;
     }
 
     // 5. Retornar user completo
