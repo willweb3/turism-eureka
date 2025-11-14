@@ -175,7 +175,7 @@ export async function PATCH(request: NextRequest) {
       })
       .eq('user_id', authUser.id)
       .select()
-      .single();
+      .single() as { data: any; error: any };
 
     if (updateError) {
       console.error('Profile update error:', updateError);
