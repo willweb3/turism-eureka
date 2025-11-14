@@ -159,8 +159,8 @@ export async function PATCH(request: NextRequest) {
     const { firstName, lastName, phoneNumber, bio, avatarUrl, location, settings } = body;
 
     // 3. Atualizar profile no Supabase
-    const { data: updatedProfile, error: updateError } = (await supabase
-      .from('profiles')
+    const { data: updatedProfile, error: updateError } = await (supabase
+      .from('profiles') as any)
       .update({
         first_name: firstName,
         last_name: lastName,
@@ -175,7 +175,7 @@ export async function PATCH(request: NextRequest) {
       })
       .eq('user_id', authUser.id)
       .select()
-      .single()) as { data: any; error: any };
+      .single();
 
     if (updateError) {
       console.error('Profile update error:', updateError);
