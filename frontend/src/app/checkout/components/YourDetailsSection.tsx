@@ -12,7 +12,7 @@ export default function YourDetailsSection({ initialData }: Props) {
 
   const handleChange = (field: keyof PersonalDetails, value: string) => {
     updateFormData({
-      personal: { ...formData.personal, [field]: value }
+      personal: { ...formData.personal, [field]: value } as any
     });
   };
 
