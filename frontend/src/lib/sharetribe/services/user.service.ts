@@ -1,4 +1,4 @@
-import { integrationSdk, UUID } from '../config';
+import { getIntegrationSdk, UUID } from '../config';
 import type { SharetribeUserData } from '@/types/user.types';
 
 export class SharetribeUserService {
@@ -7,7 +7,16 @@ export class SharetribeUserService {
    */
   static async createUser(data: SharetribeUserData) {
     try {
-      const response = await integrationSdk.users.create({
+      const sdk = getIntegrationSdk();
+      if (!sdk) {
+        return {
+          success: false,
+          error: 'Sharetribe SDK not configured',
+          code: 'SDK_NOT_CONFIGURED',
+        };
+      }
+
+      const response = await sdk.users.create({
         email: data.email,
         firstName: data.firstName,
         lastName: data.lastName,
@@ -46,7 +55,16 @@ export class SharetribeUserService {
    */
   static async getUserById(userId: string) {
     try {
-      const response = await integrationSdk.users.show({
+      const sdk = getIntegrationSdk();
+      if (!sdk) {
+        return {
+          success: false,
+          error: 'Sharetribe SDK not configured',
+          code: 'SDK_NOT_CONFIGURED',
+        };
+      }
+
+      const response = await sdk.users.show({
         id: new UUID(userId),
       });
 
@@ -79,7 +97,16 @@ export class SharetribeUserService {
     }
   ) {
     try {
-      const response = await integrationSdk.users.updateProfile({
+      const sdk = getIntegrationSdk();
+      if (!sdk) {
+        return {
+          success: false,
+          error: 'Sharetribe SDK not configured',
+          code: 'SDK_NOT_CONFIGURED',
+        };
+      }
+
+      const response = await sdk.users.updateProfile({
         id: new UUID(userId),
         ...updates,
       });
@@ -104,7 +131,15 @@ export class SharetribeUserService {
    */
   static async checkEmailExists(email: string) {
     try {
-      const response = await integrationSdk.users.query({
+      const sdk = getIntegrationSdk();
+      if (!sdk) {
+        return {
+          exists: false,
+          error: 'Sharetribe SDK not configured',
+        };
+      }
+
+      const response = await sdk.users.query({
         email: email.toLowerCase().trim(),
         perPage: 1,
       });
