@@ -1,14 +1,30 @@
 import Stripe from 'stripe';
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('STRIPE_SECRET_KEY is not defined in environment variables');
+// Lazy initialization - só cria o cliente Stripe quando for usado
+let _stripe: Stripe | null = null;
+
+export function getStripe(): Stripe | null {
+  if (_stripe) {
+    return _stripe;
+  }
+
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+
+  if (!secretKey) {
+    console.warn('STRIPE_SECRET_KEY is not defined. Stripe features will not work.');
+    return null;
+  }
+
+  _stripe = new Stripe(secretKey, {
+    apiVersion: '2023-10-16',
+    typescript: true,
+  });
+
+  return _stripe;
 }
 
-// Initialize Stripe SDK
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2023-10-16',
-  typescript: true,
-});
+// Deprecated - use getStripe() instead
+export const stripe = null as any;
 
 /**
  * Commission percentages for the platform

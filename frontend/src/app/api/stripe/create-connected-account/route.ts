@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { stripe } from '@/lib/stripe';
+import { getStripe } from '@/lib/stripe';
 
 interface CreateConnectedAccountRequest {
   email: string;
@@ -18,6 +18,14 @@ interface CreateConnectedAccountRequest {
  */
 export async function POST(request: NextRequest) {
   try {
+    const stripe = getStripe();
+    if (!stripe) {
+      return NextResponse.json(
+        { success: false, error: 'Stripe not configured' },
+        { status: 503 }
+      );
+    }
+
     const body: CreateConnectedAccountRequest = await request.json();
     const { email, type, businessName, country = 'US' } = body;
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { stripe } from '@/lib/stripe';
+import { getStripe } from '@/lib/stripe';
 
 interface ProcessTransfersRequest {
   paymentIntentId: string;
@@ -7,6 +7,14 @@ interface ProcessTransfersRequest {
 
 export async function POST(request: NextRequest) {
   try {
+    const stripe = getStripe();
+    if (!stripe) {
+      return NextResponse.json(
+        { success: false, error: 'Stripe not configured' },
+        { status: 503 }
+      );
+    }
+
     const body: ProcessTransfersRequest = await request.json();
     const { paymentIntentId } = body;
 

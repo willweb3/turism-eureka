@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { stripe, calculateCommissions, toCents } from '@/lib/stripe';
+import { getStripe, calculateCommissions, toCents } from '@/lib/stripe';
 
 interface TestPaymentRequest {
   amount: number; // Amount in decimal format from formatListing (e.g., 10.00 for €10)
@@ -26,6 +26,14 @@ interface TestPaymentRequest {
  */
 export async function POST(request: NextRequest) {
   try {
+    const stripe = getStripe();
+    if (!stripe) {
+      return NextResponse.json(
+        { success: false, error: 'Stripe not configured' },
+        { status: 503 }
+      );
+    }
+
     const body: TestPaymentRequest = await request.json();
 
     const {

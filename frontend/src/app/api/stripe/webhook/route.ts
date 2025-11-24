@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { stripe } from '@/lib/stripe';
+import { getStripe } from '@/lib/stripe';
 import Stripe from 'stripe';
 
 /**
@@ -12,6 +12,14 @@ import Stripe from 'stripe';
  */
 export async function POST(request: NextRequest) {
   try {
+    const stripe = getStripe();
+    if (!stripe) {
+      return NextResponse.json(
+        { success: false, error: 'Stripe not configured' },
+        { status: 503 }
+      );
+    }
+
     const body = await request.text();
     const signature = request.headers.get('stripe-signature');
 
@@ -42,7 +50,7 @@ export async function POST(request: NextRequest) {
     // Handle the event
     switch (event.type) {
       case 'payment_intent.succeeded':
-        await handlePaymentIntentSucceeded(event.data.object as Stripe.PaymentIntent);
+        await handlePaymentIntentSucceeded(stripe, event.data.object as Stripe.PaymentIntent);
         break;
 
       case 'payment_intent.payment_failed':
@@ -74,7 +82,7 @@ export async function POST(request: NextRequest) {
 /**
  * Handle successful payment and create transfers
  */
-async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent) {
+async function handlePaymentIntentSucceeded(stripe: Stripe, paymentIntent: Stripe.PaymentIntent) {
   try {
     console.log('Payment succeeded:', paymentIntent.id);
 
