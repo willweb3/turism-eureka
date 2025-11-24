@@ -36,7 +36,7 @@ export function Header({ transparent = true }: HeaderProps) {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || !transparent
+        isScrolled || !transparent || isMobileMenuOpen
           ? 'bg-[#02232F]/95 backdrop-blur-md shadow-lg'
           : 'bg-transparent'
       }`}
@@ -146,7 +146,7 @@ export function Header({ transparent = true }: HeaderProps) {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-6 border-t border-white/20">
+          <div className="lg:hidden py-6 border-t border-white/20 bg-[#02232F]">
             <nav className="flex flex-col gap-4">
               <Link
                 href="/about"
