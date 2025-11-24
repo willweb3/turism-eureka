@@ -18,7 +18,7 @@ export function ListingHero({ listing }: ListingHeroProps) {
     setLightboxOpen(true);
   };
 
-  const slides = listing.images.map((image) => ({
+  const slides = (listing as any).images.map((image: any) => ({
     src: image,
   }));
 
@@ -28,27 +28,27 @@ export function ListingHero({ listing }: ListingHeroProps) {
         {/* Header with featured badge */}
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-3 flex-1">
-            {listing.featured && (
+            {(listing as any).featured && (
               <span className="inline-block px-4 py-1.5 bg-[#FFBA33] text-[#11212D] font-hanken font-medium text-sm rounded-full">
                 Featured
               </span>
             )}
             <h1 className="text-4xl lg:text-5xl font-bold text-[#11212D] font-lufga">
-              {listing.title}
+              {(listing as any).title}
             </h1>
             <div className="flex items-center gap-4 text-sm flex-wrap">
               <div className="flex items-center gap-2">
-                <span className="text-[#11212D] font-bold">{listing.rating.average}</span>
+                <span className="text-[#11212D] font-bold">{(listing as any).rating.average}</span>
                 <span className="text-[#FBBF24]">★★★★☆</span>
               </div>
               <button className="text-[#11212D] hover:underline font-hanken">
-                {listing.rating.count} Reviews
+                {(listing as any).rating.count} Reviews
               </button>
               <span className="text-[#777777]">•</span>
               <span className="text-[#777777] font-hanken">
                 Activity operator:{' '}
                 <button className="text-[#11212D] hover:underline">
-                  {listing.operator.name}
+                  {(listing as any).operator.name}
                 </button>
               </span>
             </div>
@@ -79,8 +79,8 @@ export function ListingHero({ listing }: ListingHeroProps) {
             onClick={() => openLightbox(0)}
           >
             <img
-              src={listing.images[0]}
-              alt={listing.title}
+              src={(listing as any).images[0]}
+              alt={(listing as any).title}
               className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
@@ -93,8 +93,8 @@ export function ListingHero({ listing }: ListingHeroProps) {
               onClick={() => openLightbox(1)}
             >
               <img
-                src={listing.images[1]}
-                alt={`${listing.title} - 2`}
+                src={(listing as any).images[1]}
+                alt={`${(listing as any).title} - 2`}
                 className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
@@ -104,8 +104,8 @@ export function ListingHero({ listing }: ListingHeroProps) {
               onClick={() => openLightbox(2)}
             >
               <img
-                src={listing.images[2]}
-                alt={`${listing.title} - 3`}
+                src={(listing as any).images[2]}
+                alt={`${(listing as any).title} - 3`}
                 className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />

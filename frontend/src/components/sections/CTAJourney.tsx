@@ -3,12 +3,12 @@ import Link from 'next/link';
 
 export function CTAJourney() {
   return (
-    <section className="py-16 lg:py-24 bg-white">
+    <section className="py-16 lg:py-24 bg-[#F1F6F8]">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[48px] h-[400px] lg:h-[500px]">
           {/* Background */}
           <Image
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400"
+            src="/the-azores-section-2.jpg"
             alt="Start your journey"
             fill
             className="object-cover"

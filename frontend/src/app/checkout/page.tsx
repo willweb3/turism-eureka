@@ -1,4 +1,6 @@
 import { redirect } from 'next/navigation';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 import CheckoutForm from './components/CheckoutForm';
 import OrderSummary from './components/OrderSummary';
 import TrustBadges from './components/TrustBadges';
@@ -42,25 +44,29 @@ export default async function CheckoutPage({
   };
 
   return (
-    <main className="min-h-screen bg-[#F9FAFB] py-8 lg:py-16">
-      <div className="max-w-[1440px] mx-auto px-4 lg:px-[153px]">
-        <h1 className="text-2xl lg:text-4xl font-bold text-[#11212D] font-lufga mb-8 lg:mb-[79px]">
-          Complete booking request
-        </h1>
+    <>
+      <Header transparent={false} />
+      <main className="min-h-screen bg-[#F2F6F8] pt-28 pb-8 lg:pb-16">
+        <div className="max-w-[1440px] mx-auto px-4 lg:px-[153px]">
+          <h1 className="text-2xl lg:text-4xl font-bold text-[#11212D] font-lufga mb-8 lg:mb-[79px]">
+            Complete booking request
+          </h1>
 
-        <div className="flex flex-col lg:flex-row gap-6 items-start">
-          {/* Left Column - Form */}
-          <div className="w-full lg:w-[679px]">
-            <CheckoutForm initialData={mockData} />
-          </div>
+          <div className="flex flex-col lg:flex-row gap-6 items-start">
+            {/* Left Column - Form */}
+            <div className="w-full lg:w-[679px]">
+              <CheckoutForm initialData={mockData} />
+            </div>
 
-          {/* Right Column - Summary (Sticky) */}
-          <div className="w-full lg:w-[473px] lg:sticky lg:top-6 space-y-4">
-            <OrderSummary data={mockData.orderSummary} />
-            <TrustBadges />
+            {/* Right Column - Summary (Sticky) */}
+            <div className="w-full lg:w-[473px] lg:sticky lg:top-28 space-y-4">
+              <OrderSummary data={mockData.orderSummary} />
+              <TrustBadges />
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }

@@ -167,7 +167,7 @@ export function SummaryCheckout({
                   <Input
                     type="text"
                     value={promoInput}
-                    onChange={(e) => setPromoInput(e.target.value)}
+                    onChange={(value) => setPromoInput(value)}
                     placeholder="Promo code"
                     className="flex-1"
                     disabled={isApplying}

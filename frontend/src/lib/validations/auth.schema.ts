@@ -46,7 +46,7 @@ export const signUpSchema = z.object({
 export const loginSchema = z.object({
   email: emailSchema,
   password: z.string().min(1, 'Password é obrigatória'),
-  rememberMe: z.boolean().optional().default(false),
+  rememberMe: z.boolean().default(false),
 });
 
 // Password Reset Schema

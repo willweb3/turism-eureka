@@ -37,7 +37,7 @@ export default function AuthTabs({ activeTab, onTabChange }: AuthTabsProps) {
   };
 
   return (
-    <div className="flex border-b border-[#D6D8DF]" role="tablist" aria-label="Opções de autenticação">
+    <div className="flex" role="tablist" aria-label="Opções de autenticação">
       {/* Sign Up Tab */}
       <button
         role="tab"
@@ -48,19 +48,16 @@ export default function AuthTabs({ activeTab, onTabChange }: AuthTabsProps) {
         onClick={() => handleTabChange('signup')}
         onKeyDown={(e) => handleKeyDown(e, 'signup')}
         className={`
-          flex-1 py-3 px-4 text-center font-hanken text-[20px] leading-[26px] font-bold
+          py-2 px-3 text-center font-hanken text-[20px] leading-[26px]
           transition-all duration-200 relative
           ${
             activeTab === 'signup'
-              ? 'text-[#52C6BB]'
-              : 'text-[#A7ACB3] font-normal hover:text-[#777777]'
+              ? 'text-[#52C6BB] font-bold border-b-2 border-[#52C6BB]'
+              : 'text-[#A7ACB3] font-normal border-b-2 border-[#A7ACB3]/40 hover:text-[#A7ACB3]/80'
           }
         `}
       >
-        Criar Conta
-        {activeTab === 'signup' && (
-          <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#52C6BB]" />
-        )}
+        Sign up
       </button>
 
       {/* Login Tab */}
@@ -73,19 +70,16 @@ export default function AuthTabs({ activeTab, onTabChange }: AuthTabsProps) {
         onClick={() => handleTabChange('login')}
         onKeyDown={(e) => handleKeyDown(e, 'login')}
         className={`
-          flex-1 py-3 px-4 text-center font-hanken text-[20px] leading-[26px] font-bold
+          flex-1 py-2 px-3 text-left font-hanken text-[20px] leading-[26px]
           transition-all duration-200 relative
           ${
             activeTab === 'login'
-              ? 'text-[#52C6BB]'
-              : 'text-[#A7ACB3] font-normal hover:text-[#777777]'
+              ? 'text-[#52C6BB] font-bold border-b-2 border-[#52C6BB]'
+              : 'text-[#A7ACB3] font-normal border-b-2 border-[#A7ACB3]/40 hover:text-[#A7ACB3]/80'
           }
         `}
       >
-        Entrar
-        {activeTab === 'login' && (
-          <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#52C6BB]" />
-        )}
+        Login
       </button>
     </div>
   );

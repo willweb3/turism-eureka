@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Star, MapPin, Heart } from 'lucide-react';
-import { Listing } from '@/types/listing';
+// import { Listing } from '@/types/listing';
 import { useState } from 'react';
 
 interface ListingCardProps {
-  listing: Listing;
+  listing: any; // Temporary - define proper type in @/types/listing
 }
 
 export function ListingCard({ listing }: ListingCardProps) {

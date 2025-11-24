@@ -104,8 +104,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           return 'border border-red-500';
         case 'success':
           return 'border border-green-500';
-        case 'hover':
-          return 'border border-[#7B7E83]'; // Neutral-800
         case 'disabled':
           return 'border border-[#BFC3C9] opacity-50'; // Neutral-500
         case 'filled':

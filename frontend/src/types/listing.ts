@@ -89,3 +89,64 @@ export const CATEGORY_LABELS: Record<ListingCategory, string> = {
   'products': 'Products',
   'accommodations': 'Accommodations'
 };
+
+// === My Listings Page Types ===
+
+export type ListingStatus =
+  | 'confirmed'
+  | 'error'
+  | 'awaiting_payment'
+  | 'draft'
+  | 'closed'
+  | 'pending_approval';
+
+export interface Listing {
+  id: string;
+  title: string;
+  category: string;
+  location: string;
+  dateRange: string;
+  price: number;
+  priceUnit: string;
+  imageUrl: string;
+  status: ListingStatus;
+  freeCancelation: boolean;
+  statusMessage?: string;
+  // Additional fields from Supabase
+  userId?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface StatusConfig {
+  label: string;
+  color: string;
+  bgColor: string;
+  icon: React.ReactNode;
+  message?: string;
+}
+
+export interface ListingCardAction {
+  label: string;
+  onClick: () => void;
+  variant?: 'primary' | 'secondary' | 'danger';
+}
+
+// === My Bookings Types ===
+
+export type BookingStatus = 'confirmed' | 'pending' | 'cancelled' | 'completed';
+
+export interface Booking {
+  id: string;
+  listingId: string;
+  title: string;
+  category: string;
+  location: string;
+  dateRange: string;
+  price: number;
+  priceUnit: string;
+  imageUrl: string;
+  status: BookingStatus;
+  freeCancellation: boolean;
+  bookingDate: string;
+}

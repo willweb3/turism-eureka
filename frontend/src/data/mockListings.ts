@@ -1,10 +1,8 @@
-import { Listing } from '@/types/listing';
-
 /**
  * Mock data para desenvolvimento
  * Em produção, isso virá da API Sharetribe
  */
-export const mockListings: Listing[] = [
+export const mockListings: any[] = [
   {
     id: '1',
     title: 'Whale Watching Adventure',

@@ -3,19 +3,19 @@ import Image from 'next/image';
 export function StoryMissionSection() {
   const images = [
     {
-      src: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=90',
+      src: '/images/about-image-1.jpg',
       alt: 'Azores volcanic landscape',
     },
     {
-      src: 'https://images.unsplash.com/photo-1580881657123-e3b7b72e9fbb?w=600&q=90',
+      src: '/images/about-image-2.jpg',
       alt: 'Azores coastal village',
     },
     {
-      src: 'https://images.unsplash.com/photo-1571084195066-6c303d14f87b?w=600&q=90',
+      src: '/images/about-image-3.jpg',
       alt: 'Azores green hills',
     },
     {
-      src: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=90',
+      src: '/images/about-image-4.jpg',
       alt: 'Azores nature',
     },
   ];
@@ -25,11 +25,11 @@ export function StoryMissionSection() {
       <div className="container mx-auto px-6 lg:px-12 max-w-[1140px]">
         {/* Layout: Grid de Imagens (esquerda) + Textos (direita) */}
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
-          {/* Grid de Imagens - 2x2 Assimétrico */}
+          {/* Grid de Imagens - 2x2 Assimétrico conforme design */}
           <div className="flex-shrink-0">
-            <div className="grid grid-cols-2 gap-4 w-full lg:w-[371px]">
-              {/* Top-left: vertical/portrait - mais alta */}
-              <div className="relative w-full h-[180px] overflow-hidden rounded-[24px]">
+            <div className="inline-flex flex-wrap gap-5 w-full lg:w-[514px]">
+              {/* Top-left: maior (291.41 x 231.86) */}
+              <div className="relative w-full lg:w-[291px] h-[232px] overflow-hidden rounded-[24px] bg-black">
                 <Image
                   src={images[0].src}
                   alt={images[0].alt}
@@ -39,8 +39,8 @@ export function StoryMissionSection() {
                 />
               </div>
 
-              {/* Top-right: quadrada */}
-              <div className="relative w-full h-[155px] overflow-hidden rounded-[24px]">
+              {/* Top-right: menor (202.72 x 231.86) */}
+              <div className="relative w-full lg:w-[203px] h-[232px] overflow-hidden rounded-[24px] bg-black">
                 <Image
                   src={images[1].src}
                   alt={images[1].alt}
@@ -50,8 +50,8 @@ export function StoryMissionSection() {
                 />
               </div>
 
-              {/* Bottom-left: quadrada */}
-              <div className="relative w-full h-[155px] overflow-hidden rounded-[24px]">
+              {/* Bottom-left: menor (202.72 x 231.86) */}
+              <div className="relative w-full lg:w-[203px] h-[232px] overflow-hidden rounded-[24px] bg-black">
                 <Image
                   src={images[2].src}
                   alt={images[2].alt}
@@ -61,8 +61,8 @@ export function StoryMissionSection() {
                 />
               </div>
 
-              {/* Bottom-right: horizontal/landscape */}
-              <div className="relative w-full h-[155px] overflow-hidden rounded-[24px]">
+              {/* Bottom-right: maior (291.41 x 231.86) */}
+              <div className="relative w-full lg:w-[291px] h-[232px] overflow-hidden rounded-[24px] bg-black">
                 <Image
                   src={images[3].src}
                   alt={images[3].alt}

@@ -72,7 +72,7 @@ export function FiltersPanel({
             options={group.options}
             selectedOptions={selectedFilters[group.id] || []}
             onChange={(optionId) => onFilterChange(group.id, optionId)}
-            type={group.type}
+            type={group.type === 'range' ? 'checkbox' : group.type}
           />
         ))}
       </div>

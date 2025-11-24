@@ -2,7 +2,24 @@
 
 import { useEffect } from 'react';
 import { X } from 'lucide-react';
-import { SearchFilters } from '@/types/listing';
+
+// Temporary type definition - to be moved to @/types/listing
+interface SearchFilters {
+  sortBy?: string;
+  page?: number;
+  limit?: number;
+  category?: string;
+  island?: string;
+  priceMin?: number;
+  priceMax?: number;
+  types?: string[];
+  islands?: string[];
+  maxGuests?: number;
+  dates?: { from: Date; to: Date };
+  minPrice?: number;
+  maxPrice?: number;
+  [key: string]: any;
+}
 
 interface FilterModalProps {
   isOpen: boolean;

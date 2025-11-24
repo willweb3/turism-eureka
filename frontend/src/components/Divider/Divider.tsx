@@ -192,7 +192,7 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
     }
 
     // Divider with CTA
-    if (type === 'with-cta' && 'cta' in props) {
+    if (type === 'with-cta' && 'cta' in props && props.cta) {
       const { icon, onClick, ariaLabel } = props.cta;
 
       return (

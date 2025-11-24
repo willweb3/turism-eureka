@@ -17,6 +17,8 @@ export interface CheckboxProps {
   value?: string;
   id?: string;
   className?: string;
+  onFocus?: () => void;
+  onBlur?: () => void;
   'aria-label'?: string;
   'aria-labelledby'?: string;
   'aria-describedby'?: string;

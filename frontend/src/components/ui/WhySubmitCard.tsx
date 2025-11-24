@@ -9,15 +9,15 @@ export function WhySubmitCard() {
   ];
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm overflow-hidden sticky top-24">
-      <div className="h-44 overflow-hidden">
+    <div className="overflow-hidden sticky top-24">
+      <div className="h-44 overflow-hidden rounded-2xl">
         <img
           src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=800"
           alt="Azores"
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="p-6">
+      <div className="pt-6">
         <h3 className="text-lg font-hanken font-bold text-[#11212D] mb-4">
           Why Submit Your Experience?
         </h3>

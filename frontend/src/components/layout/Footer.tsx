@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Facebook, Instagram, Youtube } from 'lucide-react';
 import { useState } from 'react';
 
@@ -8,174 +9,177 @@ export function Footer() {
   const [language, setLanguage] = useState('PT');
 
   return (
-    <footer className="bg-[#1A2332] text-white">
-      <div className="container mx-auto px-6 lg:px-12 max-w-[1140px] py-16 lg:py-20">
+    <footer className="relative bg-[#0E1B25] text-white overflow-hidden">
+      {/* AZOREON Watermark Geometric Letters */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          width: '1545.47px',
+          height: '288.65px',
+          left: '50%',
+          bottom: '0',
+          transform: 'translateX(-50%)',
+          opacity: 0.05,
+          zIndex: 0,
+        }}
+      >
+        {/* A */}
+        <div style={{ width: '269.96px', height: '283.93px', left: '0px', top: '0px', position: 'absolute', background: '#65A5CD' }}></div>
+        {/* Z */}
+        <div style={{ width: '164.75px', height: '201.01px', left: '291.65px', top: '82.91px', position: 'absolute', background: '#65A5CD' }}></div>
+        {/* O */}
+        <div style={{ width: '215.20px', height: '210.46px', left: '477.73px', top: '78.19px', position: 'absolute', background: '#65A5CD' }}></div>
+        {/* R */}
+        <div style={{ width: '114.28px', height: '204.17px', left: '732.75px', top: '79.76px', position: 'absolute', background: '#65A5CD' }}></div>
+        {/* E */}
+        <div style={{ width: '211.66px', height: '210.46px', left: '860.83px', top: '78.19px', position: 'absolute', background: '#65A5CD' }}></div>
+        {/* O */}
+        <div style={{ width: '215.20px', height: '210.46px', left: '1098.85px', top: '78.19px', position: 'absolute', background: '#65A5CD' }}></div>
+        {/* N */}
+        <div style={{ width: '191.55px', height: '205.76px', left: '1353.93px', top: '78.16px', position: 'absolute', background: '#65A5CD' }}></div>
+      </div>
+
+      <div className="relative z-10 container mx-auto px-6 lg:px-8" style={{ paddingTop: '80px' }}>
         {/* Main Footer Content - 4 colunas */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 mb-12">
+        <div style={{ justifyContent: 'space-between', alignItems: 'flex-start', display: 'flex', width: '100%' }}>
           {/* Coluna 1 - Brand */}
-          <div className="lg:col-span-3">
-            {/* Logo */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-9 h-9 bg-[#3FA08F] rounded-full flex items-center justify-center">
-                <div className="text-white font-bold text-xl">A</div>
+          <div style={{ width: '364.58px', flexShrink: 0 }}>
+            <div style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '32px', display: 'flex' }}>
+              {/* Logo */}
+              <div style={{ alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '16px', display: 'flex' }}>
+                <Image
+                  src="/azoreon-logo.png"
+                  alt="Azoreon"
+                  width={180}
+                  height={37}
+                  className="h-9 w-auto"
+                />
+
+                {/* Descrição */}
+                <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '16px', fontFamily: 'Hanken Grotesk', fontWeight: 300, lineHeight: '29.52px', wordWrap: 'break-word' }}>
+                  Lorem ipsum placerat velit dictum placerat semper ornare arcu est aliquet egestas.
+                </div>
+
+                {/* Language Selector */}
+                <div style={{ justifyContent: 'flex-start', alignItems: 'center', gap: '4px', display: 'inline-flex' }}>
+                  <div style={{ justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.70)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 400, lineHeight: '22px', wordWrap: 'break-word' }}>
+                    PT
+                  </div>
+                  <div style={{ width: '20px', height: '20px', position: 'relative', overflow: 'hidden' }}>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M7 8L10 11L13 8" stroke="rgba(255, 255, 255, 0.70)" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
               </div>
-              <span className="text-white font-lufga font-semibold text-xl">
-                Azoreon
-              </span>
-            </div>
 
-            {/* Descrição */}
-            <p className="text-[#94A3B8] font-hanken text-sm leading-relaxed mb-6">
-              Lorem ipsum placerat velit dictum placerat semper ornare arcu est aliquet egestas.
-            </p>
-
-            {/* Language Selector */}
-            <div className="mb-6">
-              <select
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-                className="bg-transparent border border-[#334155] text-white font-hanken text-sm px-3 py-2 rounded cursor-pointer hover:border-[#3FA08F] transition-colors"
-              >
-                <option value="PT">PT</option>
-                <option value="EN">EN</option>
-                <option value="FR">FR</option>
-              </select>
-            </div>
-
-            {/* Social Icons */}
-            <div className="flex gap-3">
-              <a
-                href="#"
-                className="w-10 h-10 border border-[#334155] rounded-full flex items-center justify-center hover:border-[#3FA08F] transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5 text-white" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 border border-[#334155] rounded-full flex items-center justify-center hover:border-[#3FA08F] transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-5 h-5 text-white" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 border border-[#334155] rounded-full flex items-center justify-center hover:border-[#3FA08F] transition-colors"
-                aria-label="X (Twitter)"
-              >
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 border border-[#334155] rounded-full flex items-center justify-center hover:border-[#3FA08F] transition-colors"
-                aria-label="YouTube"
-              >
-                <Youtube className="w-5 h-5 text-white" />
-              </a>
+              {/* Social Icons */}
+              <div style={{ justifyContent: 'flex-start', alignItems: 'flex-start', gap: '8.82px', display: 'inline-flex' }}>
+                <a href="#" aria-label="Facebook" style={{ width: '31.89px', height: '31.89px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Facebook className="w-5 h-5" style={{ color: 'rgba(255, 255, 255, 0.70)' }} />
+                </a>
+                <a href="#" aria-label="Instagram" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Instagram className="w-5 h-5" style={{ color: 'rgba(255, 255, 255, 0.70)' }} />
+                </a>
+                <a href="#" aria-label="X (Twitter)" style={{ width: '31.89px', height: '31.89px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg className="w-4 h-4" fill="rgba(255, 255, 255, 0.70)" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </a>
+                <a href="#" aria-label="YouTube" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Youtube className="w-5 h-5" style={{ color: 'rgba(255, 255, 255, 0.70)' }} />
+                </a>
+              </div>
             </div>
           </div>
 
-          {/* Coluna 2 - Company */}
-          <div className="lg:col-span-2">
-            <h3 className="text-white font-hanken font-medium text-base mb-5">
-              Company
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/home"
-                  className="text-[#94A3B8] font-hanken text-sm hover:text-white transition-colors"
-                >
+          {/* Spacer */}
+          <div style={{ flex: '1' }}></div>
+
+          {/* Right side columns group */}
+          <div style={{ justifyContent: 'flex-start', alignItems: 'flex-start', gap: '80px', display: 'flex' }}>
+            {/* Coluna 2 - Company */}
+            <div style={{ width: '105px', flexShrink: 0 }}>
+            <div style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '12px', display: 'flex' }}>
+              <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'white', fontSize: '16px', fontFamily: 'Hanken Grotesk', fontWeight: 400, wordWrap: 'break-word' }}>
+                Company
+              </div>
+              <div style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '8px', display: 'flex' }}>
+                <Link href="/home" style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>
                   Home
                 </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="text-[#94A3B8] font-hanken text-sm hover:text-white transition-colors"
-                >
+                <Link href="/about" style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>
                   About Us
                 </Link>
-              </li>
-              <li>
-                <Link
-                  href="/tours"
-                  className="text-[#94A3B8] font-hanken text-sm hover:text-white transition-colors"
-                >
-                  Tours
+                <Link href="/search" style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>
+                  Experiences
                 </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="text-[#94A3B8] font-hanken text-sm hover:text-white transition-colors"
-                >
+                <Link href="/products" style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>
+                  Products
+                </Link>
+                <Link href="/blog" style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>
                   Blog
                 </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Coluna 3 - Locations (2 sub-colunas) */}
-          <div className="lg:col-span-4">
-            <h3 className="text-white font-hanken font-medium text-base mb-5">
-              Locations
-            </h3>
-            <div className="grid grid-cols-2 gap-x-8 gap-y-3">
-              <div className="space-y-3">
-                <div className="text-[#94A3B8] font-hanken text-sm">São Miguel</div>
-                <div className="text-[#94A3B8] font-hanken text-sm">Faial</div>
-                <div className="text-[#94A3B8] font-hanken text-sm">Terceira</div>
-                <div className="text-[#94A3B8] font-hanken text-sm">Pico</div>
-                <div className="text-[#94A3B8] font-hanken text-sm">São Jorge</div>
-              </div>
-              <div className="space-y-3">
-                <div className="text-[#94A3B8] font-hanken text-sm">Graciosa</div>
-                <div className="text-[#94A3B8] font-hanken text-sm">Santa Maria</div>
-                <div className="text-[#94A3B8] font-hanken text-sm">Corvo</div>
-                <div className="text-[#94A3B8] font-hanken text-sm">Flores</div>
               </div>
             </div>
           </div>
 
-          {/* Coluna 4 - Contact Info */}
-          <div className="lg:col-span-3">
-            <h3 className="text-white font-hanken font-medium text-base mb-5">
-              Contact Info
-            </h3>
-            <div className="space-y-3 text-[#94A3B8] font-hanken text-sm">
-              <p className="leading-relaxed">
-                Rua da Fajã Nova, nº 12 — 9700-215, Terceira
-              </p>
-              <p>(+351) 292 123 456</p>
-              <p>azoreon@acores.com</p>
+            {/* Coluna 3 - Locations (2 sub-colunas) */}
+            <div style={{ width: '209px', flexShrink: 0 }}>
+            <div style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '12px', display: 'flex' }}>
+              <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'white', fontSize: '16px', fontFamily: 'Hanken Grotesk', fontWeight: 400, wordWrap: 'break-word' }}>
+                Locations
+              </div>
+              <div style={{ alignSelf: 'stretch', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '12px', display: 'inline-flex' }}>
+                <div style={{ flex: '1 1 0', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '8px', display: 'inline-flex' }}>
+                  <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>São Miguel</div>
+                  <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>Faial</div>
+                  <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>Terceira</div>
+                  <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>Pico</div>
+                  <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>São Jorge</div>
+                </div>
+                <div style={{ flex: '1 1 0', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '8px', display: 'inline-flex' }}>
+                  <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>Graciosa</div>
+                  <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>Santa Maria</div>
+                  <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>Corvo</div>
+                  <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>Flores</div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+
+            {/* Coluna 4 - Contact Info */}
+            <div style={{ width: '174px', flexShrink: 0 }}>
+              <div style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '12px', display: 'flex' }}>
+                <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'white', fontSize: '16px', fontFamily: 'Hanken Grotesk', fontWeight: 400, wordWrap: 'break-word' }}>
+                  Contact Info
+                </div>
+                <div style={{ alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '8px', display: 'flex' }}>
+                  <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>
+                    Rua da Fajã Nova, nº 12 — 9700-215, Terceira
+                  </div>
+                  <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>
+                    (+351) 292 123 456
+                  </div>
+                  <div style={{ alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>
+                    azoreon@açores.com
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> {/* Close right side columns group */}
+        </div> {/* Close main footer content */}
 
         {/* Bottom Bar */}
-        <div className="border-t border-[#334155] pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[#94A3B8] font-hanken text-sm">
+        <div style={{ alignSelf: 'stretch', paddingTop: '24px', paddingBottom: '24px', borderTop: '0.50px rgba(255, 255, 255, 0.40) solid', justifyContent: 'space-between', alignItems: 'center', display: 'inline-flex', gap: '80px', marginTop: '80px' }}>
+          <div style={{ justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>
             © Copyright 2025, All Rights Reserved by Azoreon
-          </p>
-          <div className="flex gap-6">
-            <Link
-              href="/privacy"
-              className="text-[#94A3B8] font-hanken text-sm hover:text-white transition-colors"
-            >
+          </div>
+          <div style={{ justifyContent: 'flex-start', alignItems: 'center', gap: '40px', display: 'flex' }}>
+            <Link href="/privacy" style={{ justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>
               Privacy Policy
             </Link>
-            <span className="text-[#334155]">|</span>
-            <Link
-              href="/terms"
-              className="text-[#94A3B8] font-hanken text-sm hover:text-white transition-colors"
-            >
+            <Link href="/terms" style={{ justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'rgba(255, 255, 255, 0.80)', fontSize: '14px', fontFamily: 'Hanken Grotesk', fontWeight: 300, wordWrap: 'break-word' }}>
               Terms & Conditions
             </Link>
           </div>

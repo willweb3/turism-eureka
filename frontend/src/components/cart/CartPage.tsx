@@ -14,7 +14,7 @@ export function CartPage() {
   // Empty state
   if (!isLoading && items.length === 0) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center px-4">
+      <div className="min-h-[60vh] pt-28 flex flex-col items-center justify-center px-4">
         <div className="max-w-md text-center space-y-6">
           <div className="w-24 h-24 mx-auto rounded-full bg-gray-100 flex items-center justify-center">
             <ShoppingCart className="w-12 h-12 text-gray-400" />
@@ -52,7 +52,7 @@ export function CartPage() {
 
   return (
     <div className="min-h-screen bg-[#F2F6F8]">
-      <div className="max-w-[1244px] mx-auto px-4 py-8">
+      <div className="max-w-[1244px] mx-auto px-4 pt-28 pb-8">
         {/* Header */}
         <h1 className="text-[28px] font-bold text-[#11212D] mb-6 font-lufga">
           Your Cart

@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 export default function FAQPage() {
   return (
     <>
-      <Header />
+      <Header transparent={false} />
       <div className="min-h-screen bg-[#F7F9FA]">
         <FAQHero />
 

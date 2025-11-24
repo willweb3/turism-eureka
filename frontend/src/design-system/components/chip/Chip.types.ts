@@ -186,7 +186,7 @@ export type ChipGroupDirection = 'horizontal' | 'vertical';
 /**
  * Chip Group Props
  */
-export interface ChipGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ChipGroupProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
   /**
    * Array of chips to display
    */

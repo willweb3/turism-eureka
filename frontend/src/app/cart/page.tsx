@@ -7,7 +7,7 @@ import { CartPage } from '@/components/cart/CartPage';
 export default function Cart() {
   return (
     <>
-      <Header />
+      <Header transparent={false} />
       <CartPage />
       <Footer />
     </>

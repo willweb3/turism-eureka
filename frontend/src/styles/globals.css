@@ -3,7 +3,125 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-white text-gray-900;
+  :root {
+    --font-hanken: 'Hanken Grotesk', system-ui, sans-serif;
+    --font-lufga: 'Lufga', system-ui, sans-serif;
   }
+
+  body {
+    @apply bg-white text-gray-900 font-hanken;
+  }
+
+  * {
+    font-family: var(--font-hanken);
+  }
+}
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1840px);
+  }
+}
+
+.animate-infinite-scroll:hover {
+  animation-play-state: paused;
+}
+
+@keyframes islands-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-180px * 8 - 1rem * 8));
+  }
+}
+
+.animate-islands-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Blog Post Content Styles */
+.blog-post-content h2 {
+  font-family: var(--font-lufga);
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 54.6px;
+  color: #11212D;
+  margin-bottom: 12px;
+}
+
+.blog-post-content h3 {
+  font-family: var(--font-lufga);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 46.8px;
+  color: #11212D;
+  margin-bottom: 12px;
+}
+
+.blog-post-content p {
+  font-family: var(--font-hanken);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 23.4px;
+  color: #555555;
+  margin-bottom: 16px;
+}
+
+.blog-post-content .inline-images {
+  display: flex;
+  align-items: flex-start;
+  gap: 15.49px;
+  margin: 24px 0;
+}
+
+.blog-post-content .inline-images img {
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.blog-post-content .inline-images img:nth-child(1),
+.blog-post-content .inline-images img:nth-child(4) {
+  width: 293px;
+  height: 233px;
+}
+
+.blog-post-content .inline-images img:nth-child(2),
+.blog-post-content .inline-images img:nth-child(3) {
+  width: 204px;
+  height: 233px;
+}
+
+.blog-post-content a {
+  color: #3CA997;
+}
+
+.blog-post-content a:hover {
+  text-decoration: underline;
+}
+
+.blog-post-content ul,
+.blog-post-content ol {
+  list-style-position: inside;
+  margin-bottom: 16px;
+  color: #555555;
+}
+
+.blog-post-content ul {
+  list-style-type: disc;
+}
+
+.blog-post-content ol {
+  list-style-type: decimal;
+}
+
+.blog-post-content blockquote {
+  border-left: 4px solid #3CA997;
+  padding-left: 16px;
+  font-style: italic;
+  color: #555555;
+  margin: 16px 0;
 }

@@ -7,6 +7,7 @@ import AuthTabs, { type AuthMode } from "@/components/auth/AuthTabs";
 import SignUpFormModal from "@/components/auth/SignUpFormModal";
 import LoginFormModal from "@/components/auth/LoginFormModal";
 import FormDivider from "@/components/auth/FormDivider";
+import { Footer } from "@/components/layout/Footer";
 
 function AuthPageContent() {
   const searchParams = useSearchParams();
@@ -30,7 +31,7 @@ function AuthPageContent() {
           style={{
             backgroundImage: `
               linear-gradient(180deg, rgba(0,0,0,0) 5%, rgba(0,0,0,0.76) 99%),
-              url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2070')
+              url('/images/auth-background.jpg')
             `,
           }}
         />
@@ -97,7 +98,7 @@ function AuthPageContent() {
           </Link>
 
           {/* Form Card */}
-          <div className="bg-white rounded-[24px] shadow-2xl p-6 sm:p-8">
+          <div className="bg-[#070F16]/80 backdrop-blur-sm rounded-[24px] shadow-2xl p-6" style={{ maxWidth: '468px', width: '100%' }}>
             {/* Tabs */}
             <AuthTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
@@ -165,6 +166,11 @@ function AuthPageContent() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Footer */}
+      <div className="relative z-10">
+        <Footer />
       </div>
     </div>
   );

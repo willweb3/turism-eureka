@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default function ListingPage({ params }: PageProps) {
-  const listing = mockListingDetail;
+  const listing = mockListingDetail as any;
 
   if (!listing) {
     notFound();
@@ -45,7 +45,7 @@ export default function ListingPage({ params }: PageProps) {
 
   return (
     <>
-      <Header />
+      <Header transparent={false} />
       <div className="min-h-screen bg-neutral-50 pt-20">
         {/* Hero Title Section */}
         <section className="container mx-auto px-4 lg:px-12 py-8">

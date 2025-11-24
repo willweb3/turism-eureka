@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { ListingDetail } from '@/types/listing-detail';
 
 interface BookingSidebarProps {
@@ -8,12 +9,18 @@ interface BookingSidebarProps {
 }
 
 export function BookingSidebar({ listing }: BookingSidebarProps) {
+  const router = useRouter();
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
   const [adults, setAdults] = useState<number>(3);
   const [children, setChildren] = useState<number>(0);
   const [message, setMessage] = useState<string>('');
   const [guestsOpen, setGuestsOpen] = useState<boolean>(false);
+
+  const handleRequestBook = () => {
+    // Redirect to cart page
+    router.push('/cart');
+  };
 
   // Calculate number of days
   const calculateDays = () => {
@@ -27,8 +34,8 @@ export function BookingSidebar({ listing }: BookingSidebarProps) {
 
   const days = calculateDays();
   const totalGuests = adults + children;
-  const subtotal = listing.price * days * totalGuests;
-  const total = subtotal + listing.pricing.serviceFee + listing.pricing.taxes;
+  const subtotal = (listing as any).price * days * totalGuests;
+  const total = subtotal + (listing as any).pricing.serviceFee + (listing as any).pricing.taxes;
 
   return (
     <div className="space-y-4 lg:sticky lg:top-28 lg:self-start">
@@ -39,10 +46,10 @@ export function BookingSidebar({ listing }: BookingSidebarProps) {
           <p className="text-[14px] text-[#777777] font-hanken leading-[21px]">From</p>
           <div className="flex items-baseline gap-1">
             <span className="text-[32px] font-bold text-[#11212D] font-hanken leading-[41.6px]">
-              {listing.price}€
+              {(listing as any).price}€
             </span>
             <span className="text-[14px] text-[#777777] font-hanken">
-              /{listing.priceUnit}
+              /{(listing as any).priceUnit}
             </span>
           </div>
         </div>
@@ -171,17 +178,17 @@ export function BookingSidebar({ listing }: BookingSidebarProps) {
         <div className="flex flex-col gap-2">
           <div className="flex justify-between text-[14px] font-hanken">
             <span className="text-[#777777]">
-              €{listing.price} x {days} {days === 1 ? 'day' : 'days'}
+              €{(listing as any).price} x {days} {days === 1 ? 'day' : 'days'}
             </span>
             <span className="font-semibold text-[#11212D]">{subtotal}€</span>
           </div>
           <div className="flex justify-between text-[14px] font-hanken">
             <span className="text-[#777777]">Service fee</span>
-            <span className="font-semibold text-[#11212D]">{listing.pricing.serviceFee}€</span>
+            <span className="font-semibold text-[#11212D]">{(listing as any).pricing.serviceFee}€</span>
           </div>
           <div className="flex justify-between text-[14px] font-hanken">
             <span className="text-[#777777]">Taxes</span>
-            <span className="font-semibold text-[#11212D]">{listing.pricing.taxes}€</span>
+            <span className="font-semibold text-[#11212D]">{(listing as any).pricing.taxes}€</span>
           </div>
         </div>
 
@@ -192,7 +199,10 @@ export function BookingSidebar({ listing }: BookingSidebarProps) {
         </div>
 
         {/* Request Book button */}
-        <button className="w-full h-14 bg-[#52C6BB] hover:bg-[#3FA08F] text-white font-hanken font-semibold text-[16px] rounded-full transition-colors shadow-sm">
+        <button
+          onClick={handleRequestBook}
+          className="w-full h-14 bg-[#52C6BB] hover:bg-[#3FA08F] text-white font-hanken font-semibold text-[16px] rounded-full transition-colors shadow-sm"
+        >
           Request Book
         </button>
         <p className="text-center text-[12px] text-[#777777] font-hanken -mt-3">

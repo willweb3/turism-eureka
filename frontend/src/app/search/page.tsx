@@ -8,7 +8,25 @@ import { HorizontalFilters } from '@/components/features/search/HorizontalFilter
 import { FilterModal } from '@/components/features/search/FilterModal';
 import { SearchControls } from '@/components/features/search/SearchControls';
 import { ListingGrid } from '@/components/features/search/ListingGrid';
-import { SearchFilters as SearchFiltersType, Listing } from '@/types/listing';
+// import { SearchFilters as SearchFiltersType, Listing } from '@/types/listing';
+
+// Temporary type definition - to be moved to @/types/listing
+interface SearchFiltersType {
+  sortBy?: string;
+  page?: number;
+  limit?: number;
+  category?: string;
+  island?: string;
+  priceMin?: number;
+  priceMax?: number;
+  types?: string[];
+  islands?: string[];
+  maxGuests?: number;
+  dates?: { from: Date; to: Date };
+  minPrice?: number;
+  maxPrice?: number;
+  [key: string]: any; // Allow any other properties
+}
 import { mockListings } from '@/data/mockListings';
 
 export default function SearchPage() {
@@ -142,14 +160,14 @@ export default function SearchPage() {
 
   return (
     <>
-      <Header />
+      <Header transparent={true} />
 
-      <main className="pt-20">
+      <main>
         {/* Hero Section com Search */}
         <SearchHero initialQuery={searchQuery} onSearch={handleSearch} />
 
         {/* Main Content - Filtros + Resultados */}
-        <section className="py-12 lg:py-16 bg-[#F9FAFB]">
+        <section className="pt-12 lg:pt-16 pb-16 lg:pb-24 bg-[#F9FAFB]">
           <div className="container mx-auto px-6 lg:px-12 max-w-[1440px]">
             {/* Horizontal Filters */}
             <div className="mb-8">

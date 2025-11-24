@@ -29,7 +29,7 @@ export function ButtonsDemo() {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
             Button Components
           </h2>
-          <Badge variant="teal">Components</Badge>
+          <Badge {...({ color: "primary" } as any)}>Components</Badge>
         </div>
         <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl">
           Versatile button components with multiple variants, sizes, and states.
@@ -100,7 +100,7 @@ export function ButtonsDemo() {
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Primary</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Main call-to-action button</p>
               </div>
-              <Badge variant="teal">Most Important</Badge>
+              <Badge {...({ color: "primary" } as any)}>Most Important</Badge>
             </div>
             <div className="flex flex-wrap items-center gap-4 mb-4">
               <Button variant="primary" size="large">Large Button</Button>
@@ -170,7 +170,7 @@ export function ButtonsDemo() {
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Destructive</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">For dangerous actions</p>
               </div>
-              <Badge variant="red">Caution</Badge>
+              <Badge {...({ color: "error" } as any)}>Caution</Badge>
             </div>
             <div className="flex flex-wrap items-center gap-4 mb-4">
               <Button variant="destructive" size="large" leftIcon={<Trash2 size={24} />}>

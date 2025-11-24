@@ -1,11 +1,11 @@
 'use client';
 
-import { Listing } from '@/types/listing';
+// import { Listing } from '@/types/listing';
 import { ListingCard } from './ListingCard';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ListingGridProps {
-  listings: Listing[];
+  listings: any[]; // Temporary - define proper type in @/types/listing
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;

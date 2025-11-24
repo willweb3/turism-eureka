@@ -42,7 +42,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await fetch('http://localhost:3002/api/auth/login', {
+      const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,8 +56,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         throw new Error(data.error || 'Login failed')
       }
 
-      setUser(data.user)
-      localStorage.setItem('user', JSON.stringify(data.user))
+      // Ensure user data is valid before setting
+      if (data.user && data.user.id) {
+        setUser(data.user)
+        localStorage.setItem('user', JSON.stringify(data.user))
+      } else {
+        throw new Error('Invalid user data received')
+      }
     } catch (error) {
       console.error('Login error:', error)
       throw error

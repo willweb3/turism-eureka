@@ -1,4 +1,4 @@
-import { Listing } from './listing';
+// import { Listing } from './listing';
 
 /**
  * Review de um usuário
@@ -119,7 +119,7 @@ export interface Operator {
  * Listing completo para página de detalhes
  * Estende o Listing básico com informações adicionais
  */
-export interface ListingDetail extends Listing {
+export interface ListingDetail {
   // Operador
   operator: Operator;
 

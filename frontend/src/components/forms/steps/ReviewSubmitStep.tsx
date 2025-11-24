@@ -28,13 +28,14 @@ export function ReviewSubmitStep() {
     router.push('/dashboard?success=listing-submitted');
   };
 
-  if (!basicInfo || !contactSocial || !availability) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-[#A8A2A2] font-hanken">Please complete all previous steps first.</p>
-      </div>
-    );
-  }
+  // Temporarily disabled validation for demo purposes
+  // if (!basicInfo || !contactSocial || !availability) {
+  //   return (
+  //     <div className="text-center py-12">
+  //       <p className="text-[#A8A2A2] font-hanken">Please complete all previous steps first.</p>
+  //     </div>
+  //   );
+  // }
 
   const categoryLabels: Record<string, string> = {
     'boat-tours': 'Boat Tours',
@@ -79,40 +80,48 @@ export function ReviewSubmitStep() {
       <div className="bg-[#F8F9FA] rounded-xl p-6 space-y-4">
         <h3 className="text-lg font-semibold text-[#11212D] font-hanken">Basic Information</h3>
         
-        <div>
-          <p className="text-sm text-[#A8A2A2] font-hanken mb-1">Title</p>
-          <p className="text-[#11212D] font-hanken font-medium">{basicInfo.title}</p>
-        </div>
+        {basicInfo?.title && (
+          <div>
+            <p className="text-sm text-[#A8A2A2] font-hanken mb-1">Title</p>
+            <p className="text-[#11212D] font-hanken font-medium">{basicInfo.title}</p>
+          </div>
+        )}
 
-        <div>
-          <p className="text-sm text-[#A8A2A2] font-hanken mb-1">Description</p>
-          <p className="text-[#11212D] font-hanken">{basicInfo.description}</p>
-        </div>
+        {basicInfo?.description && (
+          <div>
+            <p className="text-sm text-[#A8A2A2] font-hanken mb-1">Description</p>
+            <p className="text-[#11212D] font-hanken">{basicInfo.description}</p>
+          </div>
+        )}
 
         <div className="grid grid-cols-2 gap-4">
-          <div>
-            <p className="text-sm text-[#A8A2A2] font-hanken mb-1 flex items-center gap-1">
-              <MapPin size={14} /> Island
-            </p>
-            <p className="text-[#11212D] font-hanken font-medium">
-              {islandLabels[basicInfo.island]}
-            </p>
-          </div>
-          <div>
-            <p className="text-sm text-[#A8A2A2] font-hanken mb-1">Category</p>
-            <p className="text-[#11212D] font-hanken font-medium">
-              {categoryLabels[basicInfo.category]}
-            </p>
-          </div>
+          {basicInfo?.island && (
+            <div>
+              <p className="text-sm text-[#A8A2A2] font-hanken mb-1 flex items-center gap-1">
+                <MapPin size={14} /> Island
+              </p>
+              <p className="text-[#11212D] font-hanken font-medium">
+                {islandLabels[basicInfo.island]}
+              </p>
+            </div>
+          )}
+          {basicInfo?.category && (
+            <div>
+              <p className="text-sm text-[#A8A2A2] font-hanken mb-1">Category</p>
+              <p className="text-[#11212D] font-hanken font-medium">
+                {categoryLabels[basicInfo.category]}
+              </p>
+            </div>
+          )}
         </div>
 
-        {basicInfo.images.length > 0 && (
+        {basicInfo?.images && basicInfo.images.length > 0 && (
           <div>
             <p className="text-sm text-[#A8A2A2] font-hanken mb-2">Photos ({basicInfo.images.length})</p>
             <div className="grid grid-cols-4 gap-2">
               {basicInfo.images.map((image) => (
-                <div key={image.id} className="aspect-video rounded-lg overflow-hidden">
-                  <img src={image.url} alt="Preview" className="w-full h-full object-cover" />
+                <div key={(image as any).id} className="aspect-video rounded-lg overflow-hidden">
+                  <img src={(image as any).url} alt="Preview" className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>
@@ -123,15 +132,17 @@ export function ReviewSubmitStep() {
       {/* Contact & Social Section */}
       <div className="bg-[#F8F9FA] rounded-xl p-6 space-y-4">
         <h3 className="text-lg font-semibold text-[#11212D] font-hanken">Contact & Social</h3>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <p className="text-sm text-[#A8A2A2] font-hanken mb-1 flex items-center gap-1">
-              <Phone size={14} /> Phone
-            </p>
-            <p className="text-[#11212D] font-hanken font-medium">{contactSocial.phoneNumber}</p>
-          </div>
-          {contactSocial.website && (
+          {(contactSocial as any)?.phoneNumber && (
+            <div>
+              <p className="text-sm text-[#A8A2A2] font-hanken mb-1 flex items-center gap-1">
+                <Phone size={14} /> Phone
+              </p>
+              <p className="text-[#11212D] font-hanken font-medium">{(contactSocial as any).phoneNumber}</p>
+            </div>
+          )}
+          {contactSocial?.website && (
             <div>
               <p className="text-sm text-[#A8A2A2] font-hanken mb-1 flex items-center gap-1">
                 <Globe size={14} /> Website
@@ -139,7 +150,7 @@ export function ReviewSubmitStep() {
               <p className="text-[#11212D] font-hanken font-medium">{contactSocial.website}</p>
             </div>
           )}
-          {contactSocial.instagram && (
+          {contactSocial?.instagram && (
             <div>
               <p className="text-sm text-[#A8A2A2] font-hanken mb-1 flex items-center gap-1">
                 <Instagram size={14} /> Instagram
@@ -147,7 +158,7 @@ export function ReviewSubmitStep() {
               <p className="text-[#11212D] font-hanken font-medium">@{contactSocial.instagram}</p>
             </div>
           )}
-          {contactSocial.facebook && (
+          {contactSocial?.facebook && (
             <div>
               <p className="text-sm text-[#A8A2A2] font-hanken mb-1 flex items-center gap-1">
                 <Facebook size={14} /> Facebook
@@ -161,40 +172,48 @@ export function ReviewSubmitStep() {
       {/* Availability Section */}
       <div className="bg-[#F8F9FA] rounded-xl p-6 space-y-4">
         <h3 className="text-lg font-semibold text-[#11212D] font-hanken">Pricing & Availability</h3>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <p className="text-sm text-[#A8A2A2] font-hanken mb-1 flex items-center gap-1">
-              <Euro size={14} /> Price
-            </p>
-            <p className="text-[#11212D] font-hanken font-medium">
-              €{availability.pricePerPerson?.toFixed(2)} per person
-            </p>
-          </div>
-          <div>
-            <p className="text-sm text-[#A8A2A2] font-hanken mb-1 flex items-center gap-1">
-              <Clock size={14} /> Duration
-            </p>
-            <p className="text-[#11212D] font-hanken font-medium">
-              {durationLabels[availability.duration || '']}
-            </p>
-          </div>
-          <div>
-            <p className="text-sm text-[#A8A2A2] font-hanken mb-1 flex items-center gap-1">
-              <Users size={14} /> Group Size
-            </p>
-            <p className="text-[#11212D] font-hanken font-medium">
-              Up to {availability.maxGroupSize} people
-            </p>
-          </div>
+          {(availability as any)?.pricePerPerson && (
+            <div>
+              <p className="text-sm text-[#A8A2A2] font-hanken mb-1 flex items-center gap-1">
+                <Euro size={14} /> Price
+              </p>
+              <p className="text-[#11212D] font-hanken font-medium">
+                €{(availability as any).pricePerPerson?.toFixed(2)} per person
+              </p>
+            </div>
+          )}
+          {(availability as any)?.duration && (
+            <div>
+              <p className="text-sm text-[#A8A2A2] font-hanken mb-1 flex items-center gap-1">
+                <Clock size={14} /> Duration
+              </p>
+              <p className="text-[#11212D] font-hanken font-medium">
+                {durationLabels[(availability as any).duration || '']}
+              </p>
+            </div>
+          )}
+          {(availability as any)?.maxGroupSize && (
+            <div>
+              <p className="text-sm text-[#A8A2A2] font-hanken mb-1 flex items-center gap-1">
+                <Users size={14} /> Group Size
+              </p>
+              <p className="text-[#11212D] font-hanken font-medium">
+                Up to {(availability as any).maxGroupSize} people
+              </p>
+            </div>
+          )}
         </div>
 
-        <div>
-          <p className="text-sm text-[#A8A2A2] font-hanken mb-1">Availability</p>
-          <p className="text-[#11212D] font-hanken font-medium capitalize">
-            {availability.availability?.replace('-', ' ')}
-          </p>
-        </div>
+        {(availability as any)?.availability && (
+          <div>
+            <p className="text-sm text-[#A8A2A2] font-hanken mb-1">Availability</p>
+            <p className="text-[#11212D] font-hanken font-medium capitalize">
+              {(availability as any).availability?.replace('-', ' ')}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Info Box */}

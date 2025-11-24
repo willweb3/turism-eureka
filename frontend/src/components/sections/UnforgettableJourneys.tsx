@@ -6,19 +6,19 @@ const JOURNEYS = [
     id: '1',
     title: 'Restaurants experience',
     description: 'We manage planning and booking for your adventure. Our services ensure a smooth travel experience.',
-    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600',
+    image: 'https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=600',
   },
   {
     id: '2',
     title: 'Cultural Tours',
-    description: 'Immerse yourself in local traditions, festivals, and authentic Azorean culture with expert guides.',
-    image: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600',
+    description: 'We handle the planning and booking for your adventure, ensuring every detail is covered for a seamless travel experience.',
+    image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=600',
   },
   {
     id: '3',
-    title: 'Ocean Adventures',
-    description: 'Whale watching, diving, and boat tours to explore the incredible marine life of the Azores.',
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600',
+    title: 'Adventure',
+    description: 'Let us take care of your adventure planning and bookings, so you can enjoy a hassle-free travel journey.',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600',
   },
 ];
 
@@ -43,9 +43,12 @@ export function UnforgettableJourneys() {
       <div className="relative z-10 container mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-white font-lufga font-semibold text-3xl md:text-4xl lg:text-5xl">
-            Unforgettable Journeys in Azores
+          <h2 className="text-white font-lufga font-semibold text-3xl md:text-4xl lg:text-5xl mb-4">
+            Unforgettable journeys on Azores
           </h2>
+          <p className="text-white/80 font-hanken text-base lg:text-lg max-w-2xl mx-auto">
+            We manage planning and booking for your adventure.
+          </p>
         </div>
 
         {/* Journeys Grid */}

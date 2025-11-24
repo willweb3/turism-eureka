@@ -34,7 +34,7 @@ export function FileUpload({
             url: e.target?.result as string,
             file: file,
             isPrimary: images.length === 0 && index === 0,
-          };
+          } as any;
           newImages.push(newImage);
 
           if (newImages.length === filesArray.slice(0, maxFiles - images.length).length) {
@@ -122,28 +122,28 @@ export function FileUpload({
         <div className="grid grid-cols-2 gap-4">
           {images.map((image) => (
             <div
-              key={image.id}
+              key={(image as any).id}
               className="relative group rounded-xl overflow-hidden border-2 border-[#E0E0E0] hover:border-[#3CA997] transition-all"
             >
               <div className="aspect-video relative">
                 <img
-                  src={image.url}
+                  src={(image as any).url}
                   alt="Preview"
                   className="w-full h-full object-cover"
                 />
-                
+
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                  {!image.isPrimary && (
+                  {!(image as any).isPrimary && (
                     <button
-                      onClick={() => setPrimaryImage(image.id)}
+                      onClick={() => setPrimaryImage((image as any).id)}
                       className="px-3 py-1 bg-white text-[#11212D] text-xs font-hanken font-medium rounded-full hover:bg-[#3CA997] hover:text-white transition-colors"
                     >
                       Set as primary
                     </button>
                   )}
                   <button
-                    onClick={() => removeImage(image.id)}
+                    onClick={() => removeImage((image as any).id)}
                     className="p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
                   >
                     <X size={16} />
@@ -151,7 +151,7 @@ export function FileUpload({
                 </div>
 
                 {/* Primary Badge */}
-                {image.isPrimary && (
+                {(image as any).isPrimary && (
                   <div className="absolute top-2 left-2 px-2 py-1 bg-[#3CA997] text-white text-xs font-hanken font-medium rounded-full">
                     Primary Photo
                   </div>

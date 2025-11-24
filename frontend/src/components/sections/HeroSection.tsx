@@ -1,7 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { SearchBar } from '@/components/search/SearchBar';
+import { Search } from 'lucide-react';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { AvatarGroup } from '@/components/ui/avatar-group';
 
 const MOCK_AVATARS = [
@@ -12,12 +14,24 @@ const MOCK_AVATARS = [
 ];
 
 export function HeroSection() {
+  const [query, setQuery] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (query.trim()) {
+      router.push(`/search?q=${encodeURIComponent(query)}`);
+    } else {
+      router.push('/search');
+    }
+  };
+
   return (
     <section className="relative h-screen min-h-[600px] lg:min-h-[854px] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1920"
+          src="/images/homepage-hero.jpg"
           alt="Azores Paradise"
           fill
           className="object-cover"
@@ -35,20 +49,33 @@ export function HeroSection() {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 h-full flex flex-col items-center justify-center text-center">
         <h1 className="text-white font-lufga font-semibold text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-4 lg:mb-6 max-w-4xl">
-          Escape to Paradise
+          Discover the Azores
         </h1>
 
         <p className="text-white text-base md:text-lg lg:text-xl mb-8 lg:mb-10 max-w-2xl font-hanken font-light">
-          Discover authentic experiences in the heart of the Azores
+          Discover the best activities on Azores Islands: epic hikes, breathtaking
+          landscapes and authentic experiences in the Azores.
         </p>
 
         {/* Search Bar */}
-        <div className="w-full max-w-2xl mb-8">
-          <SearchBar
-            placeholder="Search destinations, experiences, products..."
-            size="large"
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="w-full mb-8" style={{ maxWidth: '614px' }}>
+          <div className="relative">
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Find your next experience"
+              className="w-full h-14 pl-6 pr-16 rounded-full text-[#11212D] font-hanken text-base placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-white/30 shadow-xl bg-white"
+            />
+            <button
+              type="submit"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#3FA08F] hover:bg-[#358F7E] transition-colors rounded-full text-white flex items-center justify-center shadow-lg"
+              aria-label="Search"
+            >
+              <Search className="w-5 h-5" />
+            </button>
+          </div>
+        </form>
 
         {/* Social Proof */}
         <div className="flex items-center gap-3">

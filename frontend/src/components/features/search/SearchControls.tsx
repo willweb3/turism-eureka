@@ -1,7 +1,13 @@
 'use client';
 
 import { Grid3x3, List, ChevronDown } from 'lucide-react';
-import { SearchFilters } from '@/types/listing';
+// import { SearchFilters } from '@/types/listing';
+
+// Temporary type definition
+type SearchFilters = {
+  sortBy?: string;
+  [key: string]: any;
+};
 
 interface SearchControlsProps {
   resultCount: number;

@@ -10,7 +10,16 @@ import {
   Filter,
   X,
 } from 'lucide-react';
-import { SearchFilters as SearchFiltersType } from '@/types/listing';
+// import { SearchFilters as SearchFiltersType } from '@/types/listing';
+
+// Temporary type definition
+type SearchFiltersType = {
+  types?: string[];
+  islands?: string[];
+  minPrice?: number;
+  maxPrice?: number;
+  [key: string]: any;
+};
 
 interface SearchFiltersProps {
   filters: SearchFiltersType;

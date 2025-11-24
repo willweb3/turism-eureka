@@ -26,7 +26,7 @@ export function InputsDemo() {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
             Input Components
           </h2>
-          <Badge variant="teal">Components</Badge>
+          <Badge {...({ color: "primary" } as any)}>Components</Badge>
         </div>
         <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl">
           Form input components with multiple states, validation, and accessibility features.
@@ -502,7 +502,7 @@ function MessageInputSection() {
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">States</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-            <Badge variant="neutral" className="mb-4">Placeholder</Badge>
+            <Badge {...({ color: "neutral" } as any)} className="mb-4">Placeholder</Badge>
             <MessageInput
               label="Message"
               placeholder="Enter your message..."
@@ -518,7 +518,7 @@ function MessageInputSection() {
           </div>
 
           <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-            <Badge variant="neutral" className="mb-4">Filled</Badge>
+            <Badge {...({ color: "neutral" } as any)} className="mb-4">Filled</Badge>
             <MessageInput
               label="Message"
               value="This is a sample message with some text content."
@@ -534,7 +534,7 @@ function MessageInputSection() {
           </div>
 
           <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-            <Badge variant="red" className="mb-4">Error</Badge>
+            <Badge {...({ color: "error" } as any)} className="mb-4">Error</Badge>
             <MessageInput
               label="Message"
               value="Invalid content"
@@ -730,7 +730,7 @@ function SearchInputSection() {
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">States</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-[#F2F6F8] border border-[#777777] rounded-lg p-8">
-            <Badge variant="neutral" className="mb-4">Placeholder</Badge>
+            <Badge {...({ color: "neutral" } as any)} className="mb-4">Placeholder</Badge>
             <div className="flex justify-center">
               <SearchInput placeholder="Search..." />
             </div>
@@ -748,7 +748,7 @@ function SearchInputSection() {
           </div>
 
           <div className="bg-[#F2F6F8] border border-[#777777] rounded-lg p-8">
-            <Badge variant="neutral" className="mb-4">Filled</Badge>
+            <Badge {...({ color: "neutral" } as any)} className="mb-4">Filled</Badge>
             <div className="flex justify-center">
               <SearchInput value="sample search" placeholder="Search..." />
             </div>

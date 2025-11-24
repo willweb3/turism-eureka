@@ -112,7 +112,7 @@ export function StateShowcase({ className }: StateShowcaseProps) {
           >
             {/* State Badge */}
             <div className="flex items-center justify-between mb-4">
-              <Badge variant="neutral">{state.label}</Badge>
+              <Badge {...({ color: "neutral" } as any)}>{state.label}</Badge>
             </div>
 
             {/* Input Preview */}

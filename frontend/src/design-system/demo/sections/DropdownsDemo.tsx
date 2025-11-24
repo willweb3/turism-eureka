@@ -25,7 +25,7 @@ export function DropdownsDemo() {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
             Dropdown / Select Components
           </h2>
-          <Badge variant="teal">Components</Badge>
+          <Badge {...({ color: "primary" } as any)}>Components</Badge>
         </div>
         <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl">
           Dropdown and select components for choosing from predefined options.
@@ -202,7 +202,7 @@ function SingleSelectSection() {
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">States</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-            <Badge variant="neutral" className="mb-4">Placeholder</Badge>
+            <Badge {...({ color: "neutral" } as any)} className="mb-4">Placeholder</Badge>
             <Select
               label="Country"
               placeholder="Select a country"
@@ -215,7 +215,7 @@ function SingleSelectSection() {
           </div>
 
           <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-            <Badge variant="neutral" className="mb-4">Selected</Badge>
+            <Badge {...({ color: "neutral" } as any)} className="mb-4">Selected</Badge>
             <Select
               label="Language"
               value="en"
@@ -228,7 +228,7 @@ function SingleSelectSection() {
           </div>
 
           <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-            <Badge variant="neutral" className="mb-4">Disabled</Badge>
+            <Badge {...({ color: "neutral" } as any)} className="mb-4">Disabled</Badge>
             <Select
               label="Currency"
               placeholder="Select currency"
@@ -242,7 +242,7 @@ function SingleSelectSection() {
           </div>
 
           <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-            <Badge variant="red" className="mb-4">Error</Badge>
+            <Badge {...({ color: "error" } as any)} className="mb-4">Error</Badge>
             <Select
               label="Country"
               placeholder="Select a country"
@@ -257,7 +257,7 @@ function SingleSelectSection() {
           </div>
 
           <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-            <Badge variant="green" className="mb-4">Success</Badge>
+            <Badge {...({ color: "success" } as any)} className="mb-4">Success</Badge>
             <Select
               label="Language"
               value="en"
@@ -535,7 +535,7 @@ function MultiSelectSection() {
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Display Modes</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-            <Badge variant="neutral" className="mb-4">Badges Mode</Badge>
+            <Badge {...({ color: "neutral" } as any)} className="mb-4">Badges Mode</Badge>
             <MultiSelect
               label="Tags"
               placeholder="Select tags"
@@ -549,7 +549,7 @@ function MultiSelectSection() {
           </div>
 
           <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-            <Badge variant="neutral" className="mb-4">Count Mode</Badge>
+            <Badge {...({ color: "neutral" } as any)} className="mb-4">Count Mode</Badge>
             <MultiSelect
               label="Categories"
               placeholder="Select categories"

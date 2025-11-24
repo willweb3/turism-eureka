@@ -18,17 +18,17 @@ export function ReviewsList({ listing }: ReviewsListProps) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <h2 className="text-[24px] font-bold text-[#11212D] font-hanken leading-[31.2px]">
-          Reviews ({listing.reviews.length})
+          Reviews ({(listing as any).reviews.length})
         </h2>
         <div className="flex items-center gap-1">
-          <span className="text-[#11212D] font-bold text-[18px]">{listing.rating.average}</span>
+          <span className="text-[#11212D] font-bold text-[18px]">{(listing as any).rating.average}</span>
           <span className="text-[#FBBF24] text-[18px]">★</span>
         </div>
       </div>
 
       {/* Reviews List */}
       <div className="flex flex-col gap-6">
-        {listing.reviews.map((review) => (
+        {(listing as any).reviews.map((review: any) => (
           <div key={review.id} className="flex gap-3">
             {/* Avatar */}
             <img

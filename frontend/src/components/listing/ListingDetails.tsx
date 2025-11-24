@@ -45,7 +45,7 @@ export function ListingDetails({ listing }: ListingDetailsProps) {
     <div className="bg-white rounded-[24px] p-6 flex flex-col gap-6">
       {/* Title */}
       <h2 className="text-[28px] font-bold text-[#11212D] font-hanken leading-[39.2px]">
-        {listing.title}
+        {(listing as any).title}
       </h2>
 
       {/* Description */}
@@ -54,7 +54,7 @@ export function ListingDetails({ listing }: ListingDetailsProps) {
           Description
         </h3>
         <div className="text-[#777777] font-hanken text-[16px] leading-[24px] whitespace-pre-line">
-          {listing.description}
+          {(listing as any).description}
         </div>
       </div>
 
@@ -80,7 +80,7 @@ export function ListingDetails({ listing }: ListingDetailsProps) {
               </div>
               <div className="flex flex-col">
                 <div className="text-[#777777] font-hanken text-[12px] leading-[18px]">Check-in</div>
-                <div className="text-[#11212D] font-inter text-[14px] leading-[20px]">{listing.details.checkIn}</div>
+                <div className="text-[#11212D] font-inter text-[14px] leading-[20px]">{(listing as any).details.checkIn}</div>
               </div>
             </div>
 
@@ -93,7 +93,7 @@ export function ListingDetails({ listing }: ListingDetailsProps) {
               </div>
               <div className="flex flex-col">
                 <div className="text-[#777777] font-hanken text-[12px] leading-[18px]">Category</div>
-                <div className="text-[#11212D] font-inter text-[14px] leading-[20px]">{listing.details.category}</div>
+                <div className="text-[#11212D] font-inter text-[14px] leading-[20px]">{(listing as any).details.category}</div>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@ export function ListingDetails({ listing }: ListingDetailsProps) {
               </div>
               <div className="flex flex-col">
                 <div className="text-[#777777] font-hanken text-[12px] leading-[18px]">Check-out</div>
-                <div className="text-[#11212D] font-inter text-[14px] leading-[20px]">{listing.details.checkOut}</div>
+                <div className="text-[#11212D] font-inter text-[14px] leading-[20px]">{(listing as any).details.checkOut}</div>
               </div>
             </div>
 
@@ -128,7 +128,7 @@ export function ListingDetails({ listing }: ListingDetailsProps) {
               </div>
               <div className="flex flex-col">
                 <div className="text-[#777777] font-hanken text-[12px] leading-[18px]">Condition</div>
-                <div className="text-[#11212D] font-inter text-[14px] leading-[20px]">{listing.details.condition}</div>
+                <div className="text-[#11212D] font-inter text-[14px] leading-[20px]">{(listing as any).details.condition}</div>
               </div>
             </div>
           </div>
@@ -141,7 +141,7 @@ export function ListingDetails({ listing }: ListingDetailsProps) {
           Amenities
         </h3>
         <div className="flex flex-wrap gap-2">
-          {listing.amenities.map((amenity, index) => (
+          {(listing as any).amenities.map((amenity: any, index: number) => (
             <div
               key={index}
               className="px-4 py-2 border border-[#BFC3C9] rounded-[48px] flex items-center gap-2"

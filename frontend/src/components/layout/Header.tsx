@@ -2,21 +2,27 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X, Heart, User, LogOut, Settings, ShoppingCart } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
+import { UserDropdown } from './UserDropdown';
+import { UserDropdownAuth } from './UserDropdownAuth';
 
-export function Header() {
+interface HeaderProps {
+  transparent?: boolean;
+}
+
+export function Header({ transparent = true }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
 
   // Função para pegar as iniciais do usuário
   const getUserInitials = () => {
-    if (!user) return '';
-    const firstInitial = user.profile.firstName?.charAt(0).toUpperCase() || '';
-    const lastInitial = user.profile.lastName?.charAt(0).toUpperCase() || '';
-    return `${firstInitial}${lastInitial}`;
+    if (!user || !user.profile) return '';
+    const firstInitial = user.profile.firstName?.charAt(0)?.toUpperCase() || '';
+    const lastInitial = user.profile.lastName?.charAt(0)?.toUpperCase() || '';
+    return `${firstInitial}${lastInitial}` || 'U';
   };
 
   useEffect(() => {
@@ -27,34 +33,26 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Fechar dropdown ao clicar fora
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (isUserMenuOpen && !target.closest('.user-menu-container')) {
-        setIsUserMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isUserMenuOpen]);
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-[#02232F]/95 backdrop-blur-md shadow-sm'
-          : 'bg-[#02232F]/90 backdrop-blur-sm'
+        isScrolled || !transparent
+          ? 'bg-[#02232F]/95 backdrop-blur-md shadow-lg'
+          : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-lufga font-semibold text-white">
-              Azoreon
-            </span>
+            <Image
+              src="/azoreon-logo.png"
+              alt="Azoreon"
+              width={180}
+              height={37}
+              className="h-9 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -108,7 +106,7 @@ export function Header() {
               </Link>
             ) : (
               <Link
-                href="/register"
+                href="/become-partner"
                 className="text-white hover:text-[#52C6BB] font-hanken font-medium text-[16px] transition-colors"
               >
                 Become a partner
@@ -130,57 +128,9 @@ export function Header() {
 
             {/* Auth Section */}
             {isAuthenticated && user ? (
-              <div className="relative user-menu-container">
-                <button
-                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border-2 border-white/30 font-hanken font-semibold text-[14px] text-white hover:bg-white/20 hover:border-white/50 transition-all"
-                  aria-label="User menu"
-                >
-                  {getUserInitials()}
-                </button>
-
-                {/* User Dropdown Menu */}
-                {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden z-50">
-                    <div className="px-4 py-3 border-b border-gray-100">
-                      <p className="text-sm font-semibold text-gray-900 font-hanken">
-                        {user.profile.firstName} {user.profile.lastName}
-                      </p>
-                      <p className="text-xs text-gray-500 font-hanken truncate">
-                        {user.email}
-                      </p>
-                    </div>
-
-                    <div className="py-2">
-                      <Link
-                        href="/profile"
-                        className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 font-hanken"
-                        onClick={() => setIsUserMenuOpen(false)}
-                      >
-                        <Settings size={16} />
-                        Perfil
-                      </Link>
-                      <button
-                        onClick={() => {
-                          logout();
-                          setIsUserMenuOpen(false);
-                        }}
-                        className="flex items-center gap-3 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 font-hanken"
-                      >
-                        <LogOut size={16} />
-                        Sair
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
+              <UserDropdownAuth userInitials={getUserInitials()} />
             ) : (
-              <Link
-                href="/auth?tab=login"
-                className="px-6 py-2.5 rounded-full border border-white/30 font-hanken font-medium text-[16px] text-white hover:bg-white/10 transition-colors"
-              >
-                Login
-              </Link>
+              <UserDropdown />
             )}
           </div>
 
@@ -251,7 +201,7 @@ export function Header() {
                   </Link>
                 ) : (
                   <Link
-                    href="/register"
+                    href="/become-partner"
                     className="text-white text-left py-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -268,14 +218,14 @@ export function Header() {
                 </Link>
 
                 {/* Mobile Auth Section */}
-                {isAuthenticated && user ? (
+                {isAuthenticated && user && user.profile ? (
                   <div className="flex flex-col gap-2">
                     <div className="px-4 py-3 bg-white/10 rounded-lg">
                       <p className="text-sm font-semibold text-white font-hanken">
-                        {user.profile.firstName} {user.profile.lastName}
+                        {user.profile.firstName || ''} {user.profile.lastName || ''}
                       </p>
                       <p className="text-xs text-white/70 font-hanken truncate">
-                        {user.email}
+                        {user.email || ''}
                       </p>
                     </div>
                     <Link

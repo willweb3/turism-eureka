@@ -15,13 +15,13 @@ export function ContactSocialStep() {
     handleSubmit,
     formState: { errors },
   } = useForm<ContactSocialData>({
-    resolver: zodResolver(contactSocialSchema),
-    defaultValues: contactSocial || {
+    resolver: zodResolver(contactSocialSchema) as any,
+    defaultValues: (contactSocial || {
       phoneNumber: '',
       website: '',
       instagram: '',
       facebook: '',
-    },
+    }) as any,
   });
 
   const onSubmit = (data: ContactSocialData) => {
@@ -34,17 +34,17 @@ export function ContactSocialStep() {
       {/* Phone Number */}
       <div>
         <label htmlFor="phoneNumber" className="block text-sm font-medium text-[#11212D] font-hanken mb-2">
-          Phone Number <span className="text-red-500">*</span>
+          Phone Number
         </label>
         <input
-          {...register('phoneNumber')}
+          {...(register as any)('phoneNumber')}
           type="tel"
           id="phoneNumber"
           placeholder="+351 XXX XXX XXX"
           className="w-full px-4 py-3 border border-[#E0E0E0] rounded-lg focus:ring-2 focus:ring-[#3CA997] focus:border-transparent transition-all font-hanken"
         />
-        {errors.phoneNumber && (
-          <p className="mt-1 text-sm text-red-500 font-hanken">{errors.phoneNumber.message}</p>
+        {(errors as any).phoneNumber && (
+          <p className="mt-1 text-sm text-red-500 font-hanken">{(errors as any).phoneNumber.message}</p>
         )}
       </div>
 

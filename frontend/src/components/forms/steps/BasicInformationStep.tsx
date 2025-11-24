@@ -37,7 +37,7 @@ export function BasicInformationStep() {
     setValue,
     formState: { errors },
   } = useForm<BasicInformationData>({
-    resolver: zodResolver(basicInformationSchema),
+    resolver: zodResolver(basicInformationSchema) as any,
     defaultValues: basicInfo || {
       title: '',
       description: '',
@@ -59,7 +59,7 @@ export function BasicInformationStep() {
       {/* Listing Title */}
       <div>
         <label htmlFor="title" className="block text-sm font-medium text-[#11212D] font-hanken mb-2">
-          Listing Title <span className="text-red-500">*</span>
+          Listing Title
         </label>
         <input
           {...register('title')}
@@ -76,7 +76,7 @@ export function BasicInformationStep() {
       {/* Description */}
       <div>
         <label htmlFor="description" className="block text-sm font-medium text-[#11212D] font-hanken mb-2">
-          Description <span className="text-red-500">*</span>
+          Description
         </label>
         <textarea
           {...register('description')}
@@ -95,7 +95,7 @@ export function BasicInformationStep() {
         {/* Island Selection */}
         <div>
           <label htmlFor="island" className="block text-sm font-medium text-[#11212D] font-hanken mb-2">
-            Select Island <span className="text-red-500">*</span>
+            Select Island
           </label>
           <select
             {...register('island')}
@@ -117,7 +117,7 @@ export function BasicInformationStep() {
         {/* Category Selection */}
         <div>
           <label htmlFor="category" className="block text-sm font-medium text-[#11212D] font-hanken mb-2">
-            Select Category <span className="text-red-500">*</span>
+            Select Category
           </label>
           <select
             {...register('category')}
@@ -140,7 +140,7 @@ export function BasicInformationStep() {
       {/* Photo Upload */}
       <div>
         <label className="block text-sm font-medium text-[#11212D] font-hanken mb-2">
-          Photo Upload <span className="text-red-500">*</span>
+          Photo Upload
         </label>
         <FileUpload
           images={images}

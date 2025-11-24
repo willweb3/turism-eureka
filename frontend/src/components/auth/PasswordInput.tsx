@@ -21,8 +21,8 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
     return (
       <div className="space-y-2">
         {label && (
-          <label className="block text-sm font-medium text-[#11212D] font-hanken">
-            {label} {props.required && <span className="text-red-500">*</span>}
+          <label className="block text-sm font-normal text-white font-hanken">
+            {label}
           </label>
         )}
 
@@ -31,9 +31,9 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
             ref={ref}
             type={showPassword ? 'text' : 'password'}
             className={`
-              w-full p-3 pr-12 bg-[#F2F6F8] border rounded-lg text-sm text-[#11212D] font-hanken
+              w-full p-3 pr-12 bg-[#1A1A1A] border rounded-lg text-sm text-white font-hanken placeholder:text-white/40
               focus:outline-none focus:ring-2 focus:ring-[#52C6BB] transition-all
-              ${error ? 'border-[#E53E3E]' : 'border-[#BFC3C9]'}
+              ${error ? 'border-red-500' : 'border-white/10'}
               ${className || ''}
             `}
             aria-invalid={error ? 'true' : 'false'}
@@ -45,7 +45,7 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
             type="button"
             onClick={togglePassword}
             aria-label={showPassword ? 'Ocultar password' : 'Mostrar password'}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-[#777777] hover:text-[#11212D] transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors"
           >
             {showPassword ? (
               <EyeOff className="w-5 h-5" />
@@ -87,7 +87,7 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
         )}
 
         {error && (
-          <p id={`${props.id}-error`} className="text-sm text-[#E53E3E] font-hanken">
+          <p id={`${props.id}-error`} className="text-sm text-red-400 font-hanken">
             {error}
           </p>
         )}

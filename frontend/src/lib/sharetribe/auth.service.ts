@@ -112,7 +112,17 @@ export class SharetribeAuthService {
         password: password,
       });
 
-      console.log('✅ Login bem-sucedido:', response.data.data);
+      console.log('✅ Login bem-sucedido:', response.data);
+
+      // Validar se temos os dados do usuário
+      if (!response.data?.data) {
+        console.error('❌ Dados do usuário não encontrados na resposta');
+        return {
+          success: false,
+          error: 'Erro ao processar dados do usuário',
+          code: 'USER_DATA_ERROR',
+        };
+      }
 
       return {
         success: true,
@@ -229,6 +239,11 @@ export class SharetribeAuthService {
   private static mapSharetribeUserToUser(sharetribeUser: any): User {
     console.log('📦 Dados do Sharetribe:', sharetribeUser);
 
+    // Validação de segurança
+    if (!sharetribeUser) {
+      throw new Error('sharetribeUser is undefined or null');
+    }
+
     const attributes = sharetribeUser.attributes || {};
     const profile = attributes.profile || {};
     const publicData = profile.publicData || attributes.publicData || {};
@@ -242,15 +257,15 @@ export class SharetribeAuthService {
         firstName: profile.firstName || attributes.firstName || '',
         lastName: profile.lastName || attributes.lastName || '',
         phoneNumber: publicData.phoneNumber || null,
-        avatarUrl: profile.profileImage?.variants?.['square-small']?.url || null,
-        bio: profile.bio || null,
+        avatarUrl: profile.profileImage?.variants?.['square-small']?.url || undefined,
+        bio: profile.bio || undefined,
         userType: publicData.userType || 'tourist',
         isVerified: false,
-        verificationDate: null,
+        verificationDate: undefined,
         location: {
-          country: null,
-          city: null,
-          postalCode: null,
+          country: undefined,
+          city: undefined,
+          postalCode: undefined,
         },
         settings: {
           preferredLanguage: 'pt',
@@ -277,8 +292,8 @@ export class SharetribeAuthService {
             insurancePolicy: null,
           },
         }),
-      },
-    };
+      } as any,
+    } as any;
   }
 
   /**

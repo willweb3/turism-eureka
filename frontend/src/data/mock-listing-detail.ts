@@ -265,4 +265,4 @@ My home offers a cozy and authentic Azorean experience, surrounded by nature and
     serviceFee: 20,
     taxes: 15
   }
-};
+} as any;

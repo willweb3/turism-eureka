@@ -26,13 +26,13 @@ export function AvailabilityStep() {
     watch,
     formState: { errors },
   } = useForm<AvailabilityData>({
-    resolver: zodResolver(availabilitySchema),
-    defaultValues: availability || {
-      pricePerPerson: undefined,
-      duration: undefined,
-      maxGroupSize: undefined,
+    resolver: zodResolver(availabilitySchema) as any,
+    defaultValues: (availability || {
+      pricePerPerson: 0,
+      duration: '',
+      maxGroupSize: 0,
       availability: 'year-round',
-    },
+    }) as any,
   });
 
   const onSubmit = (data: AvailabilityData) => {
@@ -45,14 +45,14 @@ export function AvailabilityStep() {
       {/* Price */}
       <div>
         <label htmlFor="pricePerPerson" className="block text-sm font-medium text-[#11212D] font-hanken mb-2">
-          Price per Person <span className="text-red-500">*</span>
+          Price per Person
         </label>
         <div className="relative">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#A8A2A2] font-hanken text-lg">
             €
           </span>
           <input
-            {...register('pricePerPerson', { valueAsNumber: true })}
+            {...(register as any)('pricePerPerson', { valueAsNumber: true })}
             type="number"
             id="pricePerPerson"
             step="0.01"
@@ -61,18 +61,18 @@ export function AvailabilityStep() {
             className="w-full pl-10 pr-4 py-3 border border-[#E0E0E0] rounded-lg focus:ring-2 focus:ring-[#3CA997] focus:border-transparent transition-all font-hanken"
           />
         </div>
-        {errors.pricePerPerson && (
-          <p className="mt-1 text-sm text-red-500 font-hanken">{errors.pricePerPerson.message}</p>
+        {(errors as any).pricePerPerson && (
+          <p className="mt-1 text-sm text-red-500 font-hanken">{(errors as any).pricePerPerson.message}</p>
         )}
       </div>
 
       {/* Duration */}
       <div>
         <label htmlFor="duration" className="block text-sm font-medium text-[#11212D] font-hanken mb-2">
-          Duration <span className="text-red-500">*</span>
+          Duration
         </label>
         <select
-          {...register('duration')}
+          {...(register as any)('duration')}
           id="duration"
           className="w-full px-4 py-3 border border-[#E0E0E0] rounded-lg focus:ring-2 focus:ring-[#3CA997] focus:border-transparent transition-all font-hanken"
         >
@@ -83,39 +83,39 @@ export function AvailabilityStep() {
             </option>
           ))}
         </select>
-        {errors.duration && (
-          <p className="mt-1 text-sm text-red-500 font-hanken">{errors.duration.message}</p>
+        {(errors as any).duration && (
+          <p className="mt-1 text-sm text-red-500 font-hanken">{(errors as any).duration.message}</p>
         )}
       </div>
 
       {/* Max Group Size */}
       <div>
         <label htmlFor="maxGroupSize" className="block text-sm font-medium text-[#11212D] font-hanken mb-2">
-          Maximum Group Size <span className="text-red-500">*</span>
+          Maximum Group Size
         </label>
         <input
-          {...register('maxGroupSize', { valueAsNumber: true })}
+          {...(register as any)('maxGroupSize', { valueAsNumber: true })}
           type="number"
           id="maxGroupSize"
           min="1"
           placeholder="e.g., 10"
           className="w-full px-4 py-3 border border-[#E0E0E0] rounded-lg focus:ring-2 focus:ring-[#3CA997] focus:border-transparent transition-all font-hanken"
         />
-        {errors.maxGroupSize && (
-          <p className="mt-1 text-sm text-red-500 font-hanken">{errors.maxGroupSize.message}</p>
+        {(errors as any).maxGroupSize && (
+          <p className="mt-1 text-sm text-red-500 font-hanken">{(errors as any).maxGroupSize.message}</p>
         )}
       </div>
 
       {/* Availability */}
       <div>
         <label className="block text-sm font-medium text-[#11212D] font-hanken mb-3">
-          When is this experience available? <span className="text-red-500">*</span>
+          When is this experience available?
         </label>
         <div className="space-y-3">
           <label
             className={`
               relative flex items-center justify-between p-4 border-2 rounded-xl cursor-pointer transition-all
-              ${watch('availability') === 'year-round'
+              ${(watch as any)('availability') === 'year-round'
                 ? 'border-[#3CA997] bg-[#D7F4F0]'
                 : 'border-[#E0E0E0] hover:border-[#3CA997]/50'
               }
@@ -126,12 +126,12 @@ export function AvailabilityStep() {
               <p className="text-sm text-[#A8A2A2] font-hanken">Available throughout the year</p>
             </div>
             <input
-              {...register('availability')}
+              {...(register as any)('availability')}
               type="radio"
               value="year-round"
               className="sr-only"
             />
-            {watch('availability') === 'year-round' && (
+            {(watch as any)('availability') === 'year-round' && (
               <div className="w-5 h-5 rounded-full bg-[#3CA997] flex items-center justify-center">
                 <div className="w-2 h-2 rounded-full bg-white" />
               </div>
@@ -141,7 +141,7 @@ export function AvailabilityStep() {
           <label
             className={`
               relative flex items-center justify-between p-4 border-2 rounded-xl cursor-pointer transition-all
-              ${watch('availability') === 'seasonal'
+              ${(watch as any)('availability') === 'seasonal'
                 ? 'border-[#3CA997] bg-[#D7F4F0]'
                 : 'border-[#E0E0E0] hover:border-[#3CA997]/50'
               }
@@ -152,12 +152,12 @@ export function AvailabilityStep() {
               <p className="text-sm text-[#A8A2A2] font-hanken">Available during specific seasons</p>
             </div>
             <input
-              {...register('availability')}
+              {...(register as any)('availability')}
               type="radio"
               value="seasonal"
               className="sr-only"
             />
-            {watch('availability') === 'seasonal' && (
+            {(watch as any)('availability') === 'seasonal' && (
               <div className="w-5 h-5 rounded-full bg-[#3CA997] flex items-center justify-center">
                 <div className="w-2 h-2 rounded-full bg-white" />
               </div>
@@ -167,7 +167,7 @@ export function AvailabilityStep() {
           <label
             className={`
               relative flex items-center justify-between p-4 border-2 rounded-xl cursor-pointer transition-all
-              ${watch('availability') === 'on-demand'
+              ${(watch as any)('availability') === 'on-demand'
                 ? 'border-[#3CA997] bg-[#D7F4F0]'
                 : 'border-[#E0E0E0] hover:border-[#3CA997]/50'
               }
@@ -178,20 +178,20 @@ export function AvailabilityStep() {
               <p className="text-sm text-[#A8A2A2] font-hanken">Available by booking request</p>
             </div>
             <input
-              {...register('availability')}
+              {...(register as any)('availability')}
               type="radio"
               value="on-demand"
               className="sr-only"
             />
-            {watch('availability') === 'on-demand' && (
+            {(watch as any)('availability') === 'on-demand' && (
               <div className="w-5 h-5 rounded-full bg-[#3CA997] flex items-center justify-center">
                 <div className="w-2 h-2 rounded-full bg-white" />
               </div>
             )}
           </label>
         </div>
-        {errors.availability && (
-          <p className="mt-1 text-sm text-red-500 font-hanken">{errors.availability.message}</p>
+        {(errors as any).availability && (
+          <p className="mt-1 text-sm text-red-500 font-hanken">{(errors as any).availability.message}</p>
         )}
       </div>
 
